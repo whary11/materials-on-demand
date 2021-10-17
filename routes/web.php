@@ -16,3 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/gateway/{any?}', function () {
+    return view('init');
+})->where('any', '^(?!api\/)[\/\w\.-]*');
