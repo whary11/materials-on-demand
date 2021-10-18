@@ -1,11 +1,12 @@
 <?php
 
-namespace Laika\Infrastructure\Repositories;
+namespace App\Repositories;
 
 use App\Contracts\SecurityRepositoryContract;
 use App\Traits\Sp;
 use Carbon\Carbon;
 use DateTimeImmutable;
+use DateTimeInterface;
 use Exception;
 use Illuminate\Support\Facades\Redis;
 use Laika\Infrastructure\Clients\UserClient;
@@ -36,26 +37,19 @@ class SecurityRepository implements SecurityRepositoryContract {
     /**
      *
      */
-    public function createToken($user,string $apiKeyClient):?string{
+    public function createToken($user):?string{
         $now_time = new DateTimeImmutable("now");
         $issued_at = $now_time;
         $token_uuid = sha1(Carbon::now()->toDateTimeString().rand(1, 100000));
         $token_expiried_at = $now_time->modify("+50 year");
-        $client_id = $this->getClient($apiKeyClient);
-
-        if(is_null($client_id)){
-            return null;
-        }
-
-        $t_identified_by = $this->saveToken($user['id'], $client_id, $token_uuid,  $token_expiried_at);
-
+        $t_identified_by = $this->saveToken($user['id'],$token_uuid,$token_expiried_at);
         if(is_null($t_identified_by)){
             return null;
         }
 
-        $jwt = $this->generateToken($user,$client_id,$t_identified_by,$issued_at,$token_expiried_at);
+        $jwt = $this->generateToken($user,$t_identified_by,$issued_at,$token_expiried_at);
 
-        $this->saveTokenRedis($t_identified_by,$user);
+        // $this->saveTokenRedis($t_identified_by,$user);
 
         return $jwt;
     }
@@ -63,12 +57,12 @@ class SecurityRepository implements SecurityRepositoryContract {
     /**
      *
      */
-    public function generateToken($user, int $client_id, string $t_identified_by, DateTimeImmutable $issued_at, DateTimeImmutable $token_expiried_at):?string{
+    public function generateToken($user, string $t_identified_by, DateTimeImmutable $issued_at, DateTimeImmutable $token_expiried_at):?string{
         $jwt = $this->config->builder()
                         // Configures the issuer (iss claim)
                         ->issuedBy('https://laika.com.co')
                         // Configures the audience (aud claim)
-                        ->permittedFor($client_id)
+                        // ->permittedFor($client_id)
                         // Configures the id (jti claim)
                         ->identifiedBy($t_identified_by)
                         // Configures the time that the token was issue (iat claim)
@@ -107,7 +101,7 @@ class SecurityRepository implements SecurityRepositoryContract {
     /**
      *
      */
-    public function saveToken($user_id, $client_id, $token_uuid, $token_expiried_at):?string{
+    public function saveToken($user_id, $token_uuid, $token_expiried_at):?string{
         $p_now = Carbon::now()->toDateTimeString();
         // (p_uuid text, p_token_expires varchar(100), p_token_refresh_exp varchar(100), p_user_id int)
 
@@ -133,6 +127,13 @@ class SecurityRepository implements SecurityRepositoryContract {
     public function validateToken(string $jwt):?Array{
         try {
             $token = $this->config->parser()->parse($jwt);
+            $now_time = new DateTimeImmutable("now");
+            if ($token->isExpired($now_time)) {
+                return [
+                    'status' => false,
+                    'message' => 'Token expirado',
+                ];
+            }
             assert($token instanceof UnencryptedToken);
             //configurar validaciones
             $this->config->setValidationConstraints(
@@ -145,17 +146,28 @@ class SecurityRepository implements SecurityRepositoryContract {
                 $this->config->validator()->assert($token, ...$constraints);
             } catch (RequiredConstraintsViolated $e) {
                 //dump($e);
-                return [];
+                return [
+                    'status' => false,
+                    'message' => $e->getMessage(),
+                ];
             }
         } catch (RuntimeException $ex) {
             //dump($ex);
-            return [];
+            return [
+                'status' => false,
+                'message' => $ex->getMessage(),
+            ];
         }
 
         $token_uuid = $token->claims()->get("jti");
-        $client_id = $token->claims()->get("aud");
+        $user_id = $token->claims()->get("uid");
 
-        return ["token_uuid"=>$token_uuid,"client_id"=>$client_id[0]];
+        return [
+            'status' => true,
+            'message' => 'Token válido',
+            "token_uuid" => $token_uuid,
+            "user_id" => $user_id
+        ];
     }
 
     /**
@@ -225,4 +237,7 @@ class SecurityRepository implements SecurityRepositoryContract {
     public function getInfoUser(int $user_id):Array{
         return $this->userClient->getInfo($user_id);
     }
+
+    
+
 }

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -13,4 +15,13 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::group(['prefix' => 'user'], function(){
+    Route::post('login', [UserController::class, 'login']);
+});
+
+
+Route::group(['middleware' => ['auth_custom'],'prefix' => 'product'], function(){
+    Route::post('get-all', [ProductController::class, 'getAll']);
+});
 
