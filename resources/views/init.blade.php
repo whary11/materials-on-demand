@@ -6,18 +6,26 @@
 
         <title>{{ config("app.app_name") }}</title>
 
+        <!-- Google font-->
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+   
+    <!-- ico-font-->
+    <link rel="stylesheet" type="text/css" href="/assets/css/vendors/icofont.css">
+
         <!-- Font Awesome-->
     <link
     rel="stylesheet"
     type="text/css"
-    href="{{asset("/assets/css/vendors/fontawesome.css")}}"
+    href="/assets/css/vendors/fontawesome.css"
   />
 
   <!-- Flag icon-->
   <link
     rel="stylesheet"
     type="text/css"
-    href="{{asset("/assets/css/vendors/themify-icons.css")}}"
+    href="/assets/css/vendors/themify-icons.css"
   />
 
   <!-- slick icon-->
@@ -38,13 +46,15 @@
     type="text/css"
     href="/assets/css/vendors/jsgrid.css"
   />
-
+  
+  
   <!-- Bootstrap css-->
   <link
-    rel="stylesheet"
-    type="text/css"
-    href="/assets/css/vendors/bootstrap.css"
+  rel="stylesheet"
+  type="text/css"
+  href="/assets/css/vendors/bootstrap.css"
   />
+  <link rel="stylesheet" type="text/css" href="/assets/css/vendors/prism.css">
 
   <!-- App css-->
   <link rel="stylesheet" type="text/css" href="/assets/css/admin.css" />
@@ -89,6 +99,9 @@
 
     <!--script admin-->
     <script src="/assets/js/admin-script.js"></script>
+
+
+    
     <script>
       $(".single-item").slick({
         arrows: false,
