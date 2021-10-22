@@ -107,6 +107,7 @@ export default {
 
             if (resp.code == 200) {
                 this.saveUserData(resp)
+                this.$router.push({ name: "dashboard" })
             }else{
                 alert(resp.message.content)
             }
@@ -118,6 +119,8 @@ export default {
         saveUserData(resp){
             localStorage.setItem("token", resp.data.token)
             localStorage.setItem("user", JSON.stringify(resp.data.user))
+            localStorage.setItem("roles", JSON.stringify(resp.data.roles))
+            localStorage.setItem("permissions", JSON.stringify(resp.data.permissions))
         }
     },
 }

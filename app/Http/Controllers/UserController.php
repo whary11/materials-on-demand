@@ -27,7 +27,11 @@ class UserController extends Controller
                 unset($user["password"]);
                 return $this->responseApi(true, ['type' => 'success', 'content' => 'Credenciales correctas'], [
                     'token' => $token,
-                    'user' => $user
+                    'user' => $user,
+                    'roles' => [
+                        ["name" => "SUPER_ADMIN"]
+                    ],
+                    'permissions' => [],
                 ]);
             }else {
                 return $this->responseApi(false, ['type' => 'error', 'content' => 'Credenciales incorrectas']);
