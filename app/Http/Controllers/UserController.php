@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Repositories\SecurityRepository;
 use App\Repositories\UserRepository;
-use App\Traits\Sp;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -25,15 +24,20 @@ class UserController extends Controller
             if ($verify) {
                 // Crear token
                 $token = $this->securityRepository->createToken($user);
-                return $this->responseApi(true, ['type' => 'success', 'message' => 'Success'], [
+                unset($user["password"]);
+                return $this->responseApi(true, ['type' => 'success', 'content' => 'Credenciales correctas'], [
                     'token' => $token,
                     'user' => $user,
+                    'roles' => [
+                        ["name" => "SUPER_ADMIN"]
+                    ],
+                    'permissions' => [],
                 ]);
             }else {
-                $this->responseApi(false, ['type' => 'error', 'message' => 'Credenciales incorrectas']);
+                return $this->responseApi(false, ['type' => 'error', 'content' => 'Credenciales incorrectas']);
             }
         } catch (\Throwable $th) {
-            $this->responseApi(false, ['type' => 'error', 'message' => $th->getMessage()]);
+            $this->responseApi(false, ['type' => 'error', 'content' => $th->getMessage()]);
         }
     }
 }

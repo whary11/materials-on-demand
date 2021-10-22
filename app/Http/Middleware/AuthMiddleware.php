@@ -26,14 +26,14 @@ class AuthMiddleware extends Middleware
     public function handle($request, Closure $next, ...$guards)
     {
         if (!isset($request->header()['authorization'][0])) {
-            return $this->responseApi(false, ['type' => 'unauthorized', 'message' => 'Unauthorized 1']);
+            return $this->responseApi(false, ['type' => 'unauthorized', 'content' => 'Unauthorized 1']);
         }
         $token = explode(" ", $request->header()['authorization'][0]);
 
         if(count($token) != 2){
-            return $this->responseApi(false, ['type' => 'unauthorized', 'message' => 'Unauthorized 2']);
+            return $this->responseApi(false, ['type' => 'unauthorized', 'content' => 'Unauthorized 2']);
         }else if ($token[0] != "Bearer"){
-            return $this->responseApi(false, ['type' => 'unauthorized', 'message' => 'Unauthorized 3']);
+            return $this->responseApi(false, ['type' => 'unauthorized', 'content' => 'Unauthorized 3']);
         }
 
         $token_string = $token[1];
@@ -42,7 +42,7 @@ class AuthMiddleware extends Middleware
         // Validar que la formación y fecha del token sea valida
         $token = $this->securityRepository->validateToken($token);
         if(!$token['status']){
-            return $this->responseApi(false, ['type' => 'unauthorized', 'message' => $token['message']]);
+            return $this->responseApi(false, ['type' => 'unauthorized', 'content' => $token['message']]);
         }
         // Autentica al usuario
         Auth::loginUsingId($token['user_id']);
