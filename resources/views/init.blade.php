@@ -1,114 +1,83 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-
-        <title>{{ config("app.app_name") }}</title>
-
-        <!-- Google font-->
-    <link href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
-    <!-- ico-font-->
-    <link rel="stylesheet" type="text/css" href="/assets/css/vendors/icofont.css">
-
-        <!-- Font Awesome-->
-    <link
-    rel="stylesheet"
-    type="text/css"
-    href="/assets/css/vendors/fontawesome.css"
-  />
-
-  <!-- Flag icon-->
-  <link
-    rel="stylesheet"
-    type="text/css"
-    href="/assets/css/vendors/themify-icons.css"
-  />
-
-  <!-- slick icon-->
-  <link
-    rel="stylesheet"
-    type="text/css"
-    href="/assets/css/vendors/slick.css"
-  />
-  <link
-    rel="stylesheet"
-    type="text/css"
-    href="/assets/css/vendors/slick-theme.css"
-  />
-
-  <!-- jsgrid css-->
-  <link
-    rel="stylesheet"
-    type="text/css"
-    href="/assets/css/vendors/jsgrid.css"
-  />
-  
-  
-  <!-- Bootstrap css-->
-  <link
-  rel="stylesheet"
-  type="text/css"
-  href="/assets/css/vendors/bootstrap.css"
-  />
-  <link rel="stylesheet" type="text/css" href="/assets/css/vendors/prism.css">
-
-  <!-- App css-->
-  <link rel="stylesheet" type="text/css" href="/assets/css/admin.css" />
-    </head>
-    <body class="antialiased">
-
-        <div id="app">
-            <App />
-        </div>
-        
-        <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
-            Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
-        </div>
-    </body>
-
-
-    {{-- Template INIT --}}
-    <!-- latest jquery-->
-    <script src="/assets/js/jquery-3.3.1.min.js"></script>
-
-    <!-- Bootstrap js-->
-    <script src="/assets/js/bootstrap.bundle.min.js"></script>
-
-    <!-- feather icon js-->
-    <script src="/assets/js/icons/feather-icon/feather.min.js"></script>
-    <script src="/assets/js/icons/feather-icon/feather-icon.js"></script>
-
-    <!-- Sidebar jquery-->
-    <script src="/assets/js/sidebar-menu.js"></script>
-    <script src="/assets/js/slick.js"></script>
-
-    <!-- Jsgrid js-->
-    <script src="/assets/js/jsgrid/jsgrid.min.js"></script>
-    <script src="/assets/js/jsgrid/griddata-invoice.js"></script>
-    <script src="/assets/js/jsgrid/jsgrid-invoice.js"></script>
-
-    <!-- lazyload js-->
-    <script src="/assets/js/lazysizes.min.js"></script>
-
-    <!--right sidebar js-->
-    <script src="/assets/js/chat-menu.js"></script>
-
-    <!--script admin-->
-    <script src="/assets/js/admin-script.js"></script>
-
-
-    
+<!--
+* CoreUI - Free Bootstrap Admin Template
+* @version v4.0.2
+* @link https://coreui.io
+* Copyright (c) 2021 creativeLabs Łukasz Holeczek
+* Licensed under MIT (https://coreui.io/license)
+-->
+<!-- Breadcrumb-->
+<html lang="en">
+  <head>
+    <base href="./">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
+    <meta name="author" content="Łukasz Holeczek">
+    <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
+    <title>CoreUI Free Bootstrap Admin Template</title>
+    <link rel="apple-touch-icon" sizes="57x57" href="/dist/assets/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/dist/assets/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/dist/assets/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/dist/assets/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/dist/assets/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/dist/assets/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/dist/assets/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/dist/assets/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/dist/assets/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/dist/assets/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/dist/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/dist/assets/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/dist/assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/dist/assets/favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/dist/assets/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <!-- Vendors styles-->
+    <link rel="stylesheet" href="/dist/vendors/simplebar/css/simplebar.css">
+    <link rel="stylesheet" href="/dist/css/vendors/simplebar.css">
+    <!-- Main styles for this application-->
+    <link href="/dist/css/style.css" rel="stylesheet">
+    <!-- We use those styles to show code examples, you should remove them in your application.-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism.css">
+    <link href="/dist/css/examples.css" rel="stylesheet">
+    <!-- Global site tag (gtag.js) - Google Analytics-->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-118965717-3"></script>
     <script>
-      $(".single-item").slick({
-        arrows: false,
-        dots: true,
-      });
-    </script>
+      // window.dataLayer = window.dataLayer || [];
 
-    {{-- Template Fin --}}
+      // function gtag() {
+      //   dataLayer.push(arguments);
+      // }
+      // gtag('js', new Date());
+      // // Shared ID
+      // gtag('config', 'UA-118965717-3');
+      // // Bootstrap ID
+      // gtag('config', 'UA-118965717-5');
+    </script>
+    <link href="/dist/vendors/@coreui/chartjs/css/coreui-chartjs.css" rel="stylesheet">
+  </head>
+  <body>
+      <div class="bg-light min-vh-100 align-items-center" id="app" style="">
+          <App />
+      </div>
+
+    <!-- CoreUI and necessary plugins-->
+    <script src="/dist/vendors/@coreui/coreui/js/coreui.bundle.min.js"></script>
+    <script src="/dist/vendors/simplebar/js/simplebar.min.js"></script>
+    <!-- We use those scripts to show code examples, you should remove them in your application.-->
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.24.1/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.24.1/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.24.1/plugins/unescaped-markup/prism-unescaped-markup.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.24.1/plugins/normalize-whitespace/prism-normalize-whitespace.js"></script>
+    <!-- Plugins and scripts required by this view-->
+    <script src="/dist/vendors/chart.js/js/chart.min.js"></script>
+    <script src="/dist/vendors/@coreui/chartjs/js/coreui-chartjs.js"></script>
+    <script src="/dist/vendors/@coreui/utils/js/coreui-utils.js"></script>
+    <script src="/dist/js/main.js"></script>
     <script src="{{ mix('/js/app.js') }}"></script>
+
+
+  </body>
 </html>

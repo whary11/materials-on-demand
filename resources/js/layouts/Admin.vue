@@ -1,1246 +1,248 @@
 <template>
-    <div class="page-wrapper">
+    
 
-    <!-- Page Header Start-->
-    <div class="page-main-header">
-        <div class="main-header-right row">
-            <div class="main-header-left d-lg-none w-auto">
-                <div class="logo-wrapper"><a href="index.html"><img class="blur-up lazyloaded" src="/assets/images/dashboard/multikart-logo.png" alt=""></a></div>
-            </div>
-            <div class="mobile-sidebar w-auto">
-                <div class="media-body text-end switch-sm">
-                    <label class="switch">
-                        <a href="#">
-                            <span id="sidebar-toggle" data-feather="align-left">Hide</span>
-                        </a>
-                    </label>
-                </div>
-            </div>
-            <div class="nav-right col">
-                <ul class="nav-menus">
-                    <li>
-                        <form class="form-inline search-form">
-                            <div class="form-group">
-                                <input class="form-control-plaintext" type="search" placeholder="Search.."><span class="d-sm-none mobile-search"><i data-feather="search"></i></span>
-                            </div>
-                        </form>
-                    </li>
-                    <li><a class="text-dark" href="#!" onclick="javascript:toggleFullScreen()"><i data-feather="maximize-2"></i></a></li>
-                    <li class="onhover-dropdown"><a class="txt-dark" href="#">
-                        <h6>EN</h6></a>
-                        <ul class="language-dropdown onhover-show-div p-20">
-                            <li><a href="#" data-lng="en"><i class="flag-icon flag-icon-is"></i> English</a></li>
-                            <li><a href="#" data-lng="es"><i class="flag-icon flag-icon-um"></i> Spanish</a></li>
-                            <li><a href="#" data-lng="pt"><i class="flag-icon flag-icon-uy"></i> Portuguese</a></li>
-                            <li><a href="#" data-lng="fr"><i class="flag-icon flag-icon-nz"></i> French</a></li>
-                        </ul>
-                    </li>
-                    <li class="onhover-dropdown"><i data-feather="bell"></i><span class="badge badge-pill badge-primary pull-right notification-badge">3</span><span class="dot"></span>
-                        <ul class="notification-dropdown onhover-show-div p-0">
-                            <li>Notification <span class="badge badge-pill badge-primary pull-right">3</span></li>
-                            <li>
-                                <div class="media">
-                                    <div class="media-body">
-                                        <h6 class="mt-0"><span><i class="shopping-color" data-feather="shopping-bag"></i></span>Your order ready for Ship..!</h6>
-                                        <p class="mb-0">Lorem ipsum dolor sit amet, consectetuer.</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="media">
-                                    <div class="media-body">
-                                        <h6 class="mt-0 txt-success"><span><i class="download-color font-success" data-feather="download"></i></span>Download Complete</h6>
-                                        <p class="mb-0">Lorem ipsum dolor sit amet, consectetuer.</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="media">
-                                    <div class="media-body">
-                                        <h6 class="mt-0 txt-danger"><span><i class="alert-color font-danger" data-feather="alert-circle"></i></span>250 MB trash files</h6>
-                                        <p class="mb-0">Lorem ipsum dolor sit amet, consectetuer.</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="txt-dark"><a href="#">All</a> notification</li>
-                        </ul>
-                    </li>
-                    <li><a href="#"><i class="right_side_toggle" data-feather="message-square"></i><span class="dot"></span></a></li>
-                    <li class="onhover-dropdown">
-                        <div class="media align-items-center"><img class="align-self-center pull-right img-50 rounded-circle blur-up lazyloaded" src="/assets/images/dashboard/man.png" alt="header-user">
-                            <div class="dotted-animation"><span class="animate-circle"></span><span class="main-circle"></span></div>
-                        </div>
-                        <ul class="profile-dropdown onhover-show-div p-20 profile-dropdown-hover">
-                            <li><a href="#"><i data-feather="user"></i>Edit Profile</a></li>
-                            <li><a href="#"><i data-feather="mail"></i>Inbox</a></li>
-                            <li><a href="#"><i data-feather="lock"></i>Lock Screen</a></li>
-                            <li><a href="#"><i data-feather="settings"></i>Settings</a></li>
-                            <li><a href="#"><i data-feather="log-out"></i>Logout</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <div class="d-lg-none mobile-toggle pull-right"><i data-feather="more-horizontal"></i></div>
-            </div>
+   <div>
+       <div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
+        <div class="sidebar-brand d-none d-md-flex">
+          <svg class="sidebar-brand-full" width="118" height="46" alt="CoreUI Logo">
+            <use xlink:href="/dist/assets/brand/coreui.svg#full"></use>
+          </svg>
+          <svg class="sidebar-brand-narrow" width="46" height="46" alt="CoreUI Logo">
+            <use xlink:href="/dist/assets/brand/coreui.svg#signet"></use>
+          </svg>
         </div>
-    </div>
-    <!-- Page Header Ends -->
-
-    <!-- Page Body Start-->
-    <div class="page-body-wrapper">
-
-        <!-- Page Sidebar Start-->
-        <div class="page-sidebar">
-            <div class="main-header-left d-none d-lg-block">
-                <div class="logo-wrapper"><a href="index.html"><img class="blur-up lazyloaded" src="/assets/images/dashboard/multikart-logo.png" alt=""></a></div>
-            </div>
-            <div class="sidebar custom-scrollbar">
-                <div class="sidebar-user text-center">
-                    <div><img class="img-60 rounded-circle lazyloaded blur-up" src="/assets/images/dashboard/man.png" alt="#">
-                    </div>
-                    <h6 class="mt-3 f-14">{{ user().name }}</h6>
-                    <p>general manager.</p>
+        <ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
+          <li class="nav-item">
+            <router-link class="nav-link" tag="a" :to="{ name: 'dashboard'}">
+                <svg class="nav-icon">
+                    <use xlink:href="/dist/vendors/@coreui/icons/svg/free.svg#cil-speedometer"></use>
+                </svg> Dashboard<span class="badge badge-sm bg-info ms-auto">NEW</span>
+            </router-link>
+        </li>
+          <li class="nav-title">Theme</li>
+          <li class="nav-item"><a class="nav-link" href="colors.html">
+              <svg class="nav-icon">
+                <use xlink:href="/dist/vendors/@coreui/icons/svg/free.svg#cil-drop"></use>
+              </svg> Colors</a></li>
+          <li class="nav-item"><a class="nav-link" href="typography.html">
+              <svg class="nav-icon">
+                <use xlink:href="/dist/vendors/@coreui/icons/svg/free.svg#cil-pencil"></use>
+              </svg> Typography</a></li>
+          <li class="nav-title">Components</li>
+          <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
+              <svg class="nav-icon">
+                <use xlink:href="/dist/vendors/@coreui/icons/svg/free.svg#cil-puzzle"></use>
+              </svg> Base</a>
+            <ul class="nav-group-items">
+              <li class="nav-item"><a class="nav-link" href="base/accordion.html"><span class="nav-icon"></span> Accordion</a></li>
+              <li class="nav-item"><a class="nav-link" href="base/breadcrumb.html"><span class="nav-icon"></span> Breadcrumb</a></li>
+              <li class="nav-item"><a class="nav-link" href="base/cards.html"><span class="nav-icon"></span> Cards</a></li>
+              <li class="nav-item"><a class="nav-link" href="base/carousel.html"><span class="nav-icon"></span> Carousel</a></li>
+              <li class="nav-item"><a class="nav-link" href="base/collapse.html"><span class="nav-icon"></span> Collapse</a></li>
+              <li class="nav-item"><a class="nav-link" href="base/list-group.html"><span class="nav-icon"></span> List group</a></li>
+              <li class="nav-item"><a class="nav-link" href="base/navs.html"><span class="nav-icon"></span> Navs</a></li>
+              <li class="nav-item"><a class="nav-link" href="base/pagination.html"><span class="nav-icon"></span> Pagination</a></li>
+              <li class="nav-item"><a class="nav-link" href="base/popovers.html"><span class="nav-icon"></span> Popovers</a></li>
+              <li class="nav-item"><a class="nav-link" href="base/progress.html"><span class="nav-icon"></span> Progress</a></li>
+              <li class="nav-item"><a class="nav-link" href="base/scrollspy.html"><span class="nav-icon"></span> Scrollspy</a></li>
+              <li class="nav-item"><a class="nav-link" href="base/spinners.html"><span class="nav-icon"></span> Spinners</a></li>
+              <li class="nav-item"><a class="nav-link" href="base/tables.html"><span class="nav-icon"></span> Tables</a></li>
+              <li class="nav-item"><a class="nav-link" href="base/tabs.html"><span class="nav-icon"></span> Tabs</a></li>
+              <li class="nav-item"><a class="nav-link" href="base/tooltips.html"><span class="nav-icon"></span> Tooltips</a></li>
+            </ul>
+          </li>
+          <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
+              <svg class="nav-icon">
+                <use xlink:href="/dist/vendors/@coreui/icons/svg/free.svg#cil-cursor"></use>
+              </svg> Buttons</a>
+            <ul class="nav-group-items">
+              <li class="nav-item"><a class="nav-link" href="buttons/buttons.html"><span class="nav-icon"></span> Buttons</a></li>
+              <li class="nav-item"><a class="nav-link" href="buttons/button-group.html"><span class="nav-icon"></span> Buttons Group</a></li>
+              <li class="nav-item"><a class="nav-link" href="buttons/dropdowns.html"><span class="nav-icon"></span> Dropdowns</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="charts.html">
+              <svg class="nav-icon">
+                <use xlink:href="/dist/vendors/@coreui/icons/svg/free.svg#cil-chart-pie"></use>
+              </svg> Charts</a></li>
+          <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
+              <svg class="nav-icon">
+                <use xlink:href="/dist/vendors/@coreui/icons/svg/free.svg#cil-notes"></use>
+              </svg> Forms</a>
+            <ul class="nav-group-items">
+              <li class="nav-item"><a class="nav-link" href="forms/form-control.html"> Form Control</a></li>
+              <li class="nav-item"><a class="nav-link" href="forms/select.html"> Select</a></li>
+              <li class="nav-item"><a class="nav-link" href="forms/checks-radios.html"> Checks and radios</a></li>
+              <li class="nav-item"><a class="nav-link" href="forms/range.html"> Range</a></li>
+              <li class="nav-item"><a class="nav-link" href="forms/input-group.html"> Input group</a></li>
+              <li class="nav-item"><a class="nav-link" href="forms/floating-labels.html"> Floating labels</a></li>
+              <li class="nav-item"><a class="nav-link" href="forms/layout.html"> Layout</a></li>
+              <li class="nav-item"><a class="nav-link" href="forms/validation.html"> Validation</a></li>
+            </ul>
+          </li>
+          <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
+              <svg class="nav-icon">
+                <use xlink:href="/dist/vendors/@coreui/icons/svg/free.svg#cil-star"></use>
+              </svg> Icons</a>
+            <ul class="nav-group-items">
+              <li class="nav-item"><a class="nav-link" href="icons/coreui-icons-free.html"> CoreUI Icons<span class="badge badge-sm bg-success ms-auto">Free</span></a></li>
+              <li class="nav-item"><a class="nav-link" href="icons/coreui-icons-brand.html"> CoreUI Icons - Brand</a></li>
+              <li class="nav-item"><a class="nav-link" href="icons/coreui-icons-flag.html"> CoreUI Icons - Flag</a></li>
+            </ul>
+          </li>
+          <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
+              <svg class="nav-icon">
+                <use xlink:href="/dist/vendors/@coreui/icons/svg/free.svg#cil-bell"></use>
+              </svg> Notifications</a>
+            <ul class="nav-group-items">
+              <li class="nav-item"><a class="nav-link" href="notifications/alerts.html"><span class="nav-icon"></span> Alerts</a></li>
+              <li class="nav-item"><a class="nav-link" href="notifications/badge.html"><span class="nav-icon"></span> Badge</a></li>
+              <li class="nav-item"><a class="nav-link" href="notifications/modals.html"><span class="nav-icon"></span> Modals</a></li>
+              <li class="nav-item"><a class="nav-link" href="notifications/toasts.html"><span class="nav-icon"></span> Toasts</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="widgets.html">
+              <svg class="nav-icon">
+                <use xlink:href="/dist/vendors/@coreui/icons/svg/free.svg#cil-calculator"></use>
+              </svg> Widgets<span class="badge badge-sm bg-info ms-auto">NEW</span></a></li>
+          <li class="nav-divider"></li>
+          <li class="nav-title">Extras</li>
+          <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
+              <svg class="nav-icon">
+                <use xlink:href="/dist/vendors/@coreui/icons/svg/free.svg#cil-star"></use>
+              </svg> Pages</a>
+            <ul class="nav-group-items">
+              <li class="nav-item"><a class="nav-link" href="login.html" target="_top">
+                  <svg class="nav-icon">
+                    <use xlink:href="/dist/vendors/@coreui/icons/svg/free.svg#cil-account-logout"></use>
+                  </svg> Login</a></li>
+              <li class="nav-item"><a class="nav-link" href="register.html" target="_top">
+                  <svg class="nav-icon">
+                    <use xlink:href="/dist/vendors/@coreui/icons/svg/free.svg#cil-account-logout"></use>
+                  </svg> Register</a></li>
+              <li class="nav-item"><a class="nav-link" href="404.html" target="_top">
+                  <svg class="nav-icon">
+                    <use xlink:href="/dist/vendors/@coreui/icons/svg/free.svg#cil-bug"></use>
+                  </svg> Error 404</a></li>
+              <li class="nav-item"><a class="nav-link" href="500.html" target="_top">
+                  <svg class="nav-icon">
+                    <use xlink:href="/dist/vendors/@coreui/icons/svg/free.svg#cil-bug"></use>
+                  </svg> Error 500</a></li>
+            </ul>
+          </li>
+          <li class="nav-item mt-auto"><a class="nav-link" href="docs.html">
+              <svg class="nav-icon">
+                <use xlink:href="/dist/vendors/@coreui/icons/svg/free.svg#cil-description"></use>
+              </svg> Docs</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-danger" href="https://coreui.io/pro/" target="_top">
+              <svg class="nav-icon">
+                <use xlink:href="/dist/vendors/@coreui/icons/svg/free.svg#cil-layers"></use>
+              </svg> Try CoreUI
+              <div class="fw-semibold">PRO</div>
+            </a></li>
+        </ul>
+        <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
+      </div>
+      <div class="wrapper d-flex flex-column min-vh-100 bg-light">
+        <header class="header header-sticky mb-4">
+          <div class="container-fluid">
+            <button class="header-toggler px-md-0 me-md-3" type="button" onclick="coreui.Sidebar.getInstance(document.querySelector('#sidebar')).toggle()">
+              <svg class="icon icon-lg">
+                <use xlink:href="/dist/vendors/@coreui/icons/svg/free.svg#cil-menu"></use>
+              </svg>
+            </button><a class="header-brand d-md-none" href="#">
+              <svg width="118" height="46" alt="CoreUI Logo">
+                <use xlink:href="/dist/assets/brand/coreui.svg#full"></use>
+              </svg></a>
+            <ul class="header-nav d-none d-md-flex">
+              <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">Users</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">Settings</a></li>
+            </ul>
+            <ul class="header-nav ms-auto">
+              <li class="nav-item"><a class="nav-link" href="#">
+                  <svg class="icon icon-lg">
+                    <use xlink:href="/dist/vendors/@coreui/icons/svg/free.svg#cil-bell"></use>
+                  </svg></a></li>
+              <li class="nav-item"><a class="nav-link" href="#">
+                  <svg class="icon icon-lg">
+                    <use xlink:href="/dist/vendors/@coreui/icons/svg/free.svg#cil-list-rich"></use>
+                  </svg></a></li>
+              <li class="nav-item"><a class="nav-link" href="#">
+                  <svg class="icon icon-lg">
+                    <use xlink:href="/dist/vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
+                  </svg></a></li>
+            </ul>
+            <ul class="header-nav ms-3">
+              <li class="nav-item dropdown"><a class="nav-link py-0" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                  <div class="avatar avatar-md"><img class="avatar-img" src="/dist/assets/img/avatars/8.jpg" alt="user@email.com"></div>
+                </a>
+                <div class="dropdown-menu dropdown-menu-end pt-0">
+                  <div class="dropdown-header bg-light py-2">
+                    <div class="fw-semibold">Account</div>
+                  </div><a class="dropdown-item" href="#">
+                    <svg class="icon me-2">
+                      <use xlink:href="/dist/vendors/@coreui/icons/svg/free.svg#cil-bell"></use>
+                    </svg> Updates<span class="badge badge-sm bg-info ms-2">42</span></a><a class="dropdown-item" href="#">
+                    <svg class="icon me-2">
+                      <use xlink:href="/dist/vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
+                    </svg> Messages<span class="badge badge-sm bg-success ms-2">42</span></a><a class="dropdown-item" href="#">
+                    <svg class="icon me-2">
+                      <use xlink:href="/dist/vendors/@coreui/icons/svg/free.svg#cil-task"></use>
+                    </svg> Tasks<span class="badge badge-sm bg-danger ms-2">42</span></a><a class="dropdown-item" href="#">
+                    <svg class="icon me-2">
+                      <use xlink:href="/dist/vendors/@coreui/icons/svg/free.svg#cil-comment-square"></use>
+                    </svg> Comments<span class="badge badge-sm bg-warning ms-2">42</span></a>
+                  <div class="dropdown-header bg-light py-2">
+                    <div class="fw-semibold">Settings</div>
+                  </div><a class="dropdown-item" href="#">
+                    <svg class="icon me-2">
+                      <use xlink:href="/dist/vendors/@coreui/icons/svg/free.svg#cil-user"></use>
+                    </svg> Profile</a><a class="dropdown-item" href="#">
+                    <svg class="icon me-2">
+                      <use xlink:href="/dist/vendors/@coreui/icons/svg/free.svg#cil-settings"></use>
+                    </svg> Settings</a><a class="dropdown-item" href="#">
+                    <svg class="icon me-2">
+                      <use xlink:href="/dist/vendors/@coreui/icons/svg/free.svg#cil-credit-card"></use>
+                    </svg> Payments<span class="badge badge-sm bg-secondary ms-2">42</span></a><a class="dropdown-item" href="#">
+                    <svg class="icon me-2">
+                      <use xlink:href="/dist/vendors/@coreui/icons/svg/free.svg#cil-file"></use>
+                    </svg> Projects<span class="badge badge-sm bg-primary ms-2">42</span></a>
+                  <div class="dropdown-divider"></div><a class="dropdown-item" href="#">
+                    <svg class="icon me-2">
+                      <use xlink:href="/dist/vendors/@coreui/icons/svg/free.svg#cil-lock-locked"></use>
+                    </svg> Lock Account</a><a class="dropdown-item" href="#">
+                    <svg class="icon me-2">
+                      <use xlink:href="/dist/vendors/@coreui/icons/svg/free.svg#cil-account-logout"></use>
+                    </svg> Logout</a>
                 </div>
-                <ul class="sidebar-menu">
-                    <li><a class="sidebar-header" href="index.html"><i data-feather="home"></i><span>Dashboard</span></a></li>
-                    <li><a class="sidebar-header" href="#"><i data-feather="box"></i> <span>Products</span><i class="fa fa-angle-right pull-right"></i></a>
-                        <ul class="sidebar-submenu">
-                            <li>
-                                <a href="#"><i class="fa fa-circle"></i>
-                                    <span>Physical</span> <i class="fa fa-angle-right pull-right"></i>
-                                </a>
-                                <ul class="sidebar-submenu">
-                                    <li><a href="category.html"><i class="fa fa-circle"></i>Category</a></li>
-                                    <li><a href="category-sub.html"><i class="fa fa-circle"></i>Sub Category</a></li>
-                                    <li><a href="product-list.html"><i class="fa fa-circle"></i>Product List</a></li>
-                                    <li><a href="product-detail.html"><i class="fa fa-circle"></i>Product Detail</a></li>
-                                    <li><a href="add-product.html"><i class="fa fa-circle"></i>Add Product</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-circle"></i>
-                                    <span>Digital</span> <i class="fa fa-angle-right pull-right"></i>
-                                </a>
-                                <ul class="sidebar-submenu">
-                                    <li><a href="category-digital.html"><i class="fa fa-circle"></i>Category</a></li>
-                                    <li><a href="category-digitalsub.html"><i class="fa fa-circle"></i>Sub Category</a></li>
-                                    <li><a href="product-listdigital.html"><i class="fa fa-circle"></i>Product List</a></li>
-                                    <li><a href="add-digital-product.html"><i class="fa fa-circle"></i>Add Product</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><a class="sidebar-header" href=""><i data-feather="dollar-sign"></i><span>Sales</span><i class="fa fa-angle-right pull-right"></i></a>
-                        <ul class="sidebar-submenu">
-                            <li><a href="order.html"><i class="fa fa-circle"></i>Orders</a></li>
-                            <li><a href="transactions.html"><i class="fa fa-circle"></i>Transactions</a></li>
-                        </ul>
-                    </li>
-                    <li><a class="sidebar-header" href=""><i data-feather="tag"></i><span>Coupons</span><i class="fa fa-angle-right pull-right"></i></a>
-                        <ul class="sidebar-submenu">
-                            <li><a href="coupon-list.html"><i class="fa fa-circle"></i>List Coupons</a></li>
-                            <li><a href="coupon-create.html"><i class="fa fa-circle"></i>Create Coupons </a></li>
-                        </ul>
-                    </li>
-                    <li><a class="sidebar-header" href="#"><i data-feather="clipboard"></i><span>Pages</span><i class="fa fa-angle-right pull-right"></i></a>
-                        <ul class="sidebar-submenu">
-                            <li><a href="pages-list.html"><i class="fa fa-circle"></i>List Page</a></li>
-                            <li><a href="page-create.html"><i class="fa fa-circle"></i>Create Page</a></li>
-                        </ul>
-                    </li>
-                    <li><a class="sidebar-header" href="media.html"><i data-feather="camera"></i><span>Media</span></a></li>
-                    <li><a class="sidebar-header" href="#"><i data-feather="align-left"></i><span>Menus</span><i class="fa fa-angle-right pull-right"></i></a>
-                        <ul class="sidebar-submenu">
-                            <li><a href="menu-list.html"><i class="fa fa-circle"></i>Menu Lists</a></li>
-                            <li><a href="create-menu.html"><i class="fa fa-circle"></i>Create Menu</a></li>
-                        </ul>
-                    </li>
-                    <li><a class="sidebar-header" href=""><i data-feather="user-plus"></i><span>Users</span><i class="fa fa-angle-right pull-right"></i></a>
-                        <ul class="sidebar-submenu">
-                            <li><a href="user-list.html"><i class="fa fa-circle"></i>User List</a></li>
-                            <li><a href="create-user.html"><i class="fa fa-circle"></i>Create User</a></li>
-                        </ul>
-                    </li>
-                    <li><a class="sidebar-header" href=""><i data-feather="users"></i><span>Vendors</span><i class="fa fa-angle-right pull-right"></i></a>
-                        <ul class="sidebar-submenu">
-                            <li><a href="list-vendor.html"><i class="fa fa-circle"></i>Vendor List</a></li>
-                            <li><a href="create-vendors.html"><i class="fa fa-circle"></i>Create Vendor</a></li>
-                        </ul>
-                    </li>
-                    <li><a class="sidebar-header" href=""><i data-feather="chrome"></i><span>Localization</span><i class="fa fa-angle-right pull-right"></i></a>
-                        <ul class="sidebar-submenu">
-                            <li><a href="translations.html"><i class="fa fa-circle"></i>Translations</a></li>
-                            <li><a href="currency-rates.html"><i class="fa fa-circle"></i>Currency Rates</a></li>
-                            <li><a href="taxes.html"><i class="fa fa-circle"></i>Taxes</a></li>
-                        </ul>
-                    </li>
-                    <li><a class="sidebar-header" href="reports.html"><i data-feather="bar-chart"></i><span>Reports</span></a></li>
-                    <li><a class="sidebar-header" href=""><i data-feather="settings" ></i><span>Settings</span><i class="fa fa-angle-right pull-right"></i></a>
-                        <ul class="sidebar-submenu">
-                            <li><a href="profile.html"><i class="fa fa-circle"></i>Profile</a></li>
-                        </ul>
-                    </li>
-<li><a class="sidebar-header" href="invoice.html"><i data-feather="archive"></i><span>Invoice</span></a>
-                    </li>
-                    <li><a class="sidebar-header" href="login.html"><i data-feather="log-in"></i><span>Login</span></a>
-                    </li>
-                </ul>
-            </div>
+              </li>
+            </ul>
+          </div>
+          <div class="header-divider"></div>
+          <div class="container-fluid">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb my-0 ms-2">
+                <li class="breadcrumb-item">
+                  <!-- if breadcrumb is single--><span>Home</span>
+                </li>
+                <li class="breadcrumb-item active"><span>Dashboard</span></li>
+              </ol>
+            </nav>
+          </div>
+        </header>
+        <div class="body flex-grow-1 px-3">
+          <div class="container-lg">
+            
+          </div>
         </div>
-        <!-- Page Sidebar Ends-->
-
-        <!-- Right sidebar Start-->
-        <div class="right-sidebar" id="right_side_bar">
-            <div>
-                <div class="container p-0">
-                    <div class="modal-header p-l-20 p-r-20">
-                        <div class="col-sm-8 p-0">
-                            <h6 class="modal-title font-weight-bold">FRIEND LIST</h6>
-                        </div>
-                        <div class="col-sm-4 text-end p-0"><i class="me-2" data-feather="settings"></i></div>
-                    </div>
-                </div>
-                <div class="friend-list-search mt-0">
-                    <input type="text" placeholder="search friend"><i class="fa fa-search"></i>
-                </div>
-                <div class="p-l-30 p-r-30">
-                    <div class="chat-box">
-                        <div class="people-list friend-list">
-                            <ul class="list">
-                                <li class="clearfix"><img class="rounded-circle user-image" src="/assets/images/dashboard/user.png" alt="">
-                                    <div class="status-circle online"></div>
-                                    <div class="about">
-                                        <div class="name">Vincent Porter</div>
-                                        <div class="status"> Online</div>
-                                    </div>
-                                </li>
-                                <li class="clearfix"><img class="rounded-circle user-image" src="/assets/images/dashboard/user1.jpg" alt="">
-                                    <div class="status-circle away"></div>
-                                    <div class="about">
-                                        <div class="name">Ain Chavez</div>
-                                        <div class="status"> 28 minutes ago</div>
-                                    </div>
-                                </li>
-                                <li class="clearfix"><img class="rounded-circle user-image" src="/assets/images/dashboard/user2.jpg" alt="">
-                                    <div class="status-circle online"></div>
-                                    <div class="about">
-                                        <div class="name">Kori Thomas</div>
-                                        <div class="status"> Online</div>
-                                    </div>
-                                </li>
-                                <li class="clearfix"><img class="rounded-circle user-image" src="/assets/images/dashboard/user3.jpg" alt="">
-                                    <div class="status-circle online"></div>
-                                    <div class="about">
-                                        <div class="name">Erica Hughes</div>
-                                        <div class="status"> Online</div>
-                                    </div>
-                                </li>
-                                <li class="clearfix"><img class="rounded-circle user-image" src="/assets/images/dashboard/man.png" alt="">
-                                    <div class="status-circle offline"></div>
-                                    <div class="about">
-                                        <div class="name">Ginger Johnston</div>
-                                        <div class="status"> 2 minutes ago</div>
-                                    </div>
-                                </li>
-                                <li class="clearfix"><img class="rounded-circle user-image" src="/assets/images/dashboard/user5.jpg" alt="">
-                                    <div class="status-circle away"></div>
-                                    <div class="about">
-                                        <div class="name">Prasanth Anand</div>
-                                        <div class="status"> 2 hour ago</div>
-                                    </div>
-                                </li>
-                                <li class="clearfix"><img class="rounded-circle user-image" src="/assets/images/dashboard/designer.jpg" alt="">
-                                    <div class="status-circle online"></div>
-                                    <div class="about">
-                                        <div class="name">Hileri Jecno</div>
-                                        <div class="status"> Online</div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Right sidebar Ends-->
-
-        <div class="page-body">
-
-            <!-- Container-fluid starts-->
-            <div class="container-fluid">
-                <div class="page-header">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="page-header-left">
-                                <h3>Dashboard
-                                    <small>Multikart Admin panel</small>
-                                </h3>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <ol class="breadcrumb pull-right">
-                                <li class="breadcrumb-item"><a href="index.html"><i data-feather="home"></i></a></li>
-                                <li class="breadcrumb-item active">Dashboard</li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Container-fluid Ends-->
-
-            <!-- Container-fluid starts-->
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-xl-3 col-md-6 xl-50">
-                        <div class="card o-hidden widget-cards">
-                            <div class="bg-warning card-body">
-                                <div class="media static-top-widget row">
-                                    <div class="icons-widgets col-4">
-                                        <div class="align-self-center text-center"><i data-feather="navigation" class="font-warning"></i></div>
-                                    </div>
-                                    <div class="media-body col-8"><span class="m-0">Earnings</span>
-                                        <h3 class="mb-0">$ <span class="counter">6659</span><small> This Month</small></h3>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6 xl-50">
-                        <div class="card o-hidden  widget-cards">
-                            <div class="bg-secondary card-body">
-                                <div class="media static-top-widget row">
-                                    <div class="icons-widgets col-4">
-                                        <div class="align-self-center text-center"><i data-feather="box" class="font-secondary"></i></div>
-                                    </div>
-                                    <div class="media-body col-8"><span class="m-0">Products</span>
-                                        <h3 class="mb-0">$ <span class="counter">9856</span><small> This Month</small></h3>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6 xl-50">
-                        <div class="card o-hidden widget-cards">
-                            <div class="bg-primary card-body">
-                                <div class="media static-top-widget row">
-                                    <div class="icons-widgets col-4">
-                                        <div class="align-self-center text-center"><i data-feather="message-square" class="font-primary"></i></div>
-                                    </div>
-                                    <div class="media-body col-8"><span class="m-0">Messages</span>
-                                        <h3 class="mb-0">$ <span class="counter">893</span><small> This Month</small></h3>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6 xl-50">
-                        <div class="card o-hidden widget-cards">
-                            <div class="bg-danger card-body">
-                                <div class="media static-top-widget row">
-                                    <div class="icons-widgets col-4">
-                                        <div class="align-self-center text-center"><i data-feather="users" class="font-danger"></i></div>
-                                    </div>
-                                    <div class="media-body col-8"><span class="m-0">New Vendors</span>
-                                        <h3 class="mb-0">$ <span class="counter">45631</span><small> This Month</small></h3>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-6 xl-100">
-                        <div class="card">
-                            <div class="card-header">
-                                <h5>Market Value</h5>
-                                <div class="card-header-right">
-                                    <ul class="list-unstyled card-option">
-                                        <li><i class="icofont icofont-simple-left"></i></li>
-                                        <li><i class="view-html fa fa-code"></i></li>
-                                        <li><i class="icofont icofont-maximize full-card"></i></li>
-                                        <li><i class="icofont icofont-minus minimize-card"></i></li>
-                                        <li><i class="icofont icofont-refresh reload-card"></i></li>
-                                        <li><i class="icofont icofont-error close-card"></i></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="market-chart"></div>
-                                <div class="code-box-copy">
-                                    <button class="code-box-copy__btn btn-clipboard" data-clipboard-target="#example-head" title="Copy"><i class="icofont icofont-copy-alt"></i></button>
-                                    <pre><code class="language-html" id="example-head">&lt;!-- Cod Box Copy begin --&gt;
-&lt;div class="market-chart"&gt;&lt;/div&gt;
-&lt;!-- Cod Box Copy end --&gt;</code></pre>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-6 xl-100">
-                        <div class="card">
-                            <div class="card-header">
-                                <h5>Latest Orders</h5>
-                                <div class="card-header-right">
-                                    <ul class="list-unstyled card-option">
-                                        <li><i class="icofont icofont-simple-left"></i></li>
-                                        <li><i class="view-html fa fa-code"></i></li>
-                                        <li><i class="icofont icofont-maximize full-card"></i></li>
-                                        <li><i class="icofont icofont-minus minimize-card"></i></li>
-                                        <li><i class="icofont icofont-refresh reload-card"></i></li>
-                                        <li><i class="icofont icofont-error close-card"></i></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="user-status table-responsive latest-order-table">
-                                    <table class="table table-bordernone">
-                                        <thead>
-                                        <tr>
-                                            <th scope="col">Order ID</th>
-                                            <th scope="col">Order Total</th>
-                                            <th scope="col">Payment Method</th>
-                                            <th scope="col">Status</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td class="digits">$120.00</td>
-                                            <td class="font-danger">Bank Transfers</td>
-                                            <td class="digits">On Way</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td class="digits">$90.00</td>
-                                            <td class="font-secondary">Ewallets</td>
-                                            <td class="digits">Delivered</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td class="digits">$240.00</td>
-                                            <td class="font-warning">Cash</td>
-                                            <td class="digits">Delivered</td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td class="digits">$120.00</td>
-                                            <td class="font-primary">Direct Deposit</td>
-                                            <td class="digits">$6523</td>
-                                        </tr>
-                                        <tr>
-                                            <td>5</td>
-                                            <td class="digits">$50.00</td>
-                                            <td class="font-primary">Bank Transfers</td>
-                                            <td class="digits">Delivered</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                    <a href="order.html" class="btn btn-primary">View All Orders</a>
-                                </div>
-                                <div class="code-box-copy">
-                                    <button class="code-box-copy__btn btn-clipboard" data-clipboard-target="#example-head1" title="" data-original-title="Copy"><i class="icofont icofont-copy-alt"></i></button>
-                                    <pre class=" language-html"><code class=" language-html" id="example-head1">
-&lt;div class="user-status table-responsive latest-order-table"&gt;
-    &lt;table class="table table-bordernone"&gt;
-        &lt;thead&gt;
-            &lt;tr&gt;
-                &lt;th scope="col"&gt;Order ID&lt;/th&gt;
-                &lt;th scope="col"&gt;Order Total&lt;/th&gt;
-                &lt;th scope="col"&gt;Payment Method&lt;/th&gt;
-                &lt;th scope="col"&gt;Status&lt;/th&gt;
-            &lt;/tr&gt;
-        &lt;/thead&gt;
-        &lt;tbody&gt;
-            &lt;tr&gt;
-                &lt;td&gt;1&lt;/td&gt;
-                &lt;td class="digits"&gt;$120.00&lt;/td&gt;
-                &lt;td class="font-secondary"&gt;Bank Transfers&lt;/td&gt;
-                &lt;td class="digits"&gt;Delivered&lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
-                &lt;td&gt;2&lt;/td&gt;
-                &lt;td class="digits"&gt;$90.00&lt;/td&gt;
-                &lt;td class="font-secondary"&gt;Ewallets&lt;/td&gt;
-                &lt;td class="digits"&gt;Delivered&lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
-                &lt;td&gt;3&lt;/td&gt;
-                &lt;td class="digits"&gt;$240.00&lt;/td&gt;
-                &lt;td class="font-secondary"&gt;Cash&lt;/td&gt;
-                &lt;td class="digits"&gt;Delivered&lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
-                &lt;td&gt;4&lt;/td&gt;
-                &lt;td class="digits"&gt;$120.00&lt;/td&gt;
-                &lt;td class="font-primary"&gt;Direct Deposit&lt;/td&gt;
-                &lt;td class="digits"&gt;Delivered&lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
-                &lt;td&gt;5&lt;/td&gt;
-                &lt;td class="digits"&gt;$50.00&lt;/td&gt;
-                &lt;td class="font-primary"&gt;Bank Transfers&lt;/td&gt;
-                &lt;td class="digits"&gt;Delivered&lt;/td&gt;
-            &lt;/tr&gt;
-        &lt;/tbody&gt;
-    &lt;/table&gt;
-&lt;/div&gt;
-                                    </code></pre>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6 xl-50">
-                        <div class="card order-graph sales-carousel">
-                            <div class="card-header">
-                                <h6>Total Sales</h6>
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="small-chartjs">
-                                            <div class="flot-chart-placeholder" id="simple-line-chart-sparkline-3"></div>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="value-graph">
-                                            <h3>42% <span><i class="fa fa-angle-up font-primary"></i></span></h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="media">
-                                    <div class="media-body">
-                                        <span>Sales Last Month</span>
-                                        <h2 class="mb-0">9054</h2>
-                                        <p>0.25% <span><i class="fa fa-angle-up"></i></span></p>
-                                        <h5 class="f-w-600">Gross sales of August</h5>
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
-                                    </div>
-                                    <div class="bg-primary b-r-8">
-                                        <div class="small-box">
-                                            <i data-feather="briefcase"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6 xl-50">
-                        <div class="card order-graph sales-carousel">
-                            <div class="card-header">
-                                <h6>Total purchase</h6>
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="small-chartjs">
-                                            <div class="flot-chart-placeholder" id="simple-line-chart-sparkline"></div>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="value-graph">
-                                            <h3>20% <span><i class="fa fa-angle-up font-secondary"></i></span></h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="media">
-                                    <div class="media-body">
-                                        <span>Monthly purchase</span>
-                                        <h2 class="mb-0">2154</h2>
-                                        <p>0.13% <span><i class="fa fa-angle-up"></i></span></p>
-                                        <h5 class="f-w-600">Avg Gross purchase</h5>
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
-                                    </div>
-                                    <div class="bg-secondary b-r-8">
-                                        <div class="small-box">
-                                            <i data-feather="credit-card"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6 xl-50">
-                        <div class="card order-graph sales-carousel">
-                            <div class="card-header">
-                                <h6>Total cash transaction</h6>
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="small-chartjs">
-                                            <div class="flot-chart-placeholder" id="simple-line-chart-sparkline-2"></div>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="value-graph">
-                                            <h3>28% <span><i class="fa fa-angle-up font-warning"></i></span></h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="media">
-                                    <div class="media-body">
-                                        <span>Cash on hand</span>
-                                        <h2 class="mb-0">4672</h2>
-                                        <p>0.8% <span><i class="fa fa-angle-up"></i></span></p>
-                                        <h5 class="f-w-600">Details about cash</h5>
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
-                                    </div>
-                                    <div class="bg-warning b-r-8">
-                                        <div class="small-box">
-                                            <i data-feather="shopping-cart"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6 xl-50">
-                        <div class="card order-graph sales-carousel">
-                            <div class="card-header">
-                                <h6>Daily Deposits</h6>
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="small-chartjs">
-                                            <div class="flot-chart-placeholder" id="simple-line-chart-sparkline-1"></div>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="value-graph">
-                                            <h3>75% <span><i class="fa fa-angle-up font-danger"></i></span></h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="media">
-                                    <div class="media-body">
-                                        <span>Security Deposits</span>
-                                        <h2 class="mb-0">0782</h2>
-                                        <p>0.25% <span><i class="fa fa-angle-up"></i></span></p>
-                                        <h5 class="f-w-600">Gross sales of June</h5>
-                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
-                                    </div>
-                                    <div class="bg-danger b-r-8">
-                                        <div class="small-box">
-                                            <i data-feather="calendar"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h5>Buy / Sell</h5>
-                                <div class="card-header-right">
-                                    <ul class="list-unstyled card-option">
-                                        <li><i class="icofont icofont-simple-left"></i></li>
-                                        <li><i class="view-html fa fa-code"></i></li>
-                                        <li><i class="icofont icofont-maximize full-card"></i></li>
-                                        <li><i class="icofont icofont-minus minimize-card"></i></li>
-                                        <li><i class="icofont icofont-refresh reload-card"></i></li>
-                                        <li><i class="icofont icofont-error close-card"></i></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="card-body sell-graph">
-                                <canvas id="myGraph"></canvas>
-                                <div class="code-box-copy">
-                                    <button class="code-box-copy__btn btn-clipboard" data-clipboard-target="#example-head3" title="" data-original-title="Copy"><i class="icofont icofont-copy-alt"></i></button>
-                                    <pre class=" language-html"><code class=" language-html" id="example-head3">&lt;div class="card-body sell-graph"&gt;
-   &lt;canvas id="myGraph"&gt;&lt;/canvas&gt;
-&lt;/div&gt;</code></pre>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-6 xl-100">
-                        <div class="card height-equal">
-                            <div class="card-header">
-                                <h5>Goods return</h5>
-                                <div class="card-header-right">
-                                    <ul class="list-unstyled card-option">
-                                        <li><i class="icofont icofont-simple-left"></i></li>
-                                        <li><i class="view-html fa fa-code"></i></li>
-                                        <li><i class="icofont icofont-maximize full-card"></i></li>
-                                        <li><i class="icofont icofont-minus minimize-card"></i></li>
-                                        <li><i class="icofont icofont-refresh reload-card"></i></li>
-                                        <li><i class="icofont icofont-error close-card"></i></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="user-status table-responsive products-table">
-                                    <table class="table table-bordernone mb-0">
-                                        <thead>
-                                        <tr>
-                                            <th scope="col">Details</th>
-                                            <th scope="col">Quantity</th>
-                                            <th scope="col">Status</th>
-                                            <th scope="col">Price</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td>Simply dummy text of the printing</td>
-                                            <td class="digits">1</td>
-                                            <td class="font-primary">Pending</td>
-                                            <td class="digits">$6523</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Long established</td>
-                                            <td class="digits">5</td>
-                                            <td class="font-secondary">Cancle</td>
-                                            <td class="digits">$6523</td>
-                                        </tr>
-                                        <tr>
-                                            <td>sometimes by accident</td>
-                                            <td class="digits">10</td>
-                                            <td class="font-secondary">Cancle</td>
-                                            <td class="digits">$6523</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Classical Latin literature</td>
-                                            <td class="digits">9</td>
-                                            <td class="font-primary">Return</td>
-                                            <td class="digits">$6523</td>
-                                        </tr>
-                                        <tr>
-                                            <td>keep the site on the Internet</td>
-                                            <td class="digits">8</td>
-                                            <td class="font-primary">Pending</td>
-                                            <td class="digits">$6523</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Molestiae consequatur</td>
-                                            <td class="digits">3</td>
-                                            <td class="font-secondary">Cancle</td>
-                                            <td class="digits">$6523</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Pain can procure</td>
-                                            <td class="digits">8</td>
-                                            <td class="font-primary">Return</td>
-                                            <td class="digits">$6523</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="code-box-copy">
-                                    <button class="code-box-copy__btn btn-clipboard" data-clipboard-target="#example-head4" title="" data-original-title="Copy"><i class="icofont icofont-copy-alt"></i></button>
-                                    <pre class=" language-html"><code class=" language-html" id="example-head4">
-&lt;div class="user-status table-responsive products-table"&gt;
-    &lt;table class="table table-bordernone mb-0"&gt;
-        &lt;thead&gt;
-            &lt;tr&gt;
-                &lt;th scope="col"&gt;Details&lt;/th&gt;
-                &lt;th scope="col"&gt;Quantity&lt;/th&gt;
-                &lt;th scope="col"&gt;Status&lt;/th&gt;
-                &lt;th scope="col"&gt;Price&lt;/th&gt;
-            &lt;/tr&gt;
-        &lt;/thead&gt;
-        &lt;tbody&gt;
-            &lt;tr&gt;
-                &lt;td&gt;Simply dummy text of the printing&lt;/td&gt;
-                &lt;td class="digits"&gt;1&lt;/td&gt;
-                &lt;td class="font-primary"&gt;Pending&lt;/td&gt;
-                &lt;td class="digits"&gt;$6523&lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
-                &lt;td&gt;Long established&lt;/td&gt;
-                &lt;td class="digits"&gt;5&lt;/td&gt;
-                &lt;td class="font-secondary"&gt;Cancle&lt;/td&gt;
-                &lt;td class="digits"&gt;$6523&lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
-                &lt;td&gt;sometimes by accident&lt;/td&gt;
-                &lt;td class="digits"&gt;10&lt;/td&gt;
-                &lt;td class="font-secondary"&gt;Cancle&lt;/td&gt;
-                &lt;td class="digits"&gt;$6523&lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
-                &lt;td&gt;Classical Latin literature&lt;/td&gt;
-                &lt;td class="digits"&gt;9&lt;/td&gt;
-                &lt;td class="font-primary"&gt;Return&lt;/td&gt;
-                &lt;td class="digits"&gt;$6523&lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
-                &lt;td&gt;keep the site on the Internet&lt;/td&gt;
-                &lt;td class="digits"&gt;8&lt;/td&gt;
-                &lt;td class="font-primary"&gt;Pending&lt;/td&gt;
-                &lt;td class="digits"&gt;$6523&lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
-                &lt;td&gt;Molestiae consequatur&lt;/td&gt;
-                &lt;td class="digits"&gt;3&lt;/td&gt;
-                &lt;td class="font-secondary"&gt;Cancle&lt;/td&gt;
-                &lt;td class="digits"&gt;$6523&lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
-                &lt;td&gt;Pain can procure&lt;/td&gt;
-                &lt;td class="digits"&gt;8&lt;/td&gt;
-                &lt;td class="font-primary"&gt;Return&lt;/td&gt;
-                &lt;td class="digits"&gt;$6523&lt;/td&gt;
-            &lt;/tr&gt;
-        &lt;/tbody&gt;
-    &lt;/table&gt;
-&lt;/div&gt;
-                                    </code></pre>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-6 xl-100">
-                        <div class="card height-equal">
-                            <div class="card-header">
-                                <h5>Empolyee Status</h5>
-                                <div class="card-header-right">
-                                    <ul class="list-unstyled card-option">
-                                        <li><i class="icofont icofont-simple-left"></i></li>
-                                        <li><i class="view-html fa fa-code"></i></li>
-                                        <li><i class="icofont icofont-maximize full-card"></i></li>
-                                        <li><i class="icofont icofont-minus minimize-card"></i></li>
-                                        <li><i class="icofont icofont-refresh reload-card"></i></li>
-                                        <li><i class="icofont icofont-error close-card"></i></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="user-status table-responsive products-table">
-                                    <table class="table table-bordernone mb-0">
-                                        <thead>
-                                        <tr>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Designation</th>
-                                            <th scope="col">Skill Level</th>
-                                            <th scope="col">Experience</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td class="bd-t-none u-s-tb">
-                                                <div class="align-middle image-sm-size"><img class="img-radius align-top m-r-15 rounded-circle blur-up lazyloaded" src="/assets/images/dashboard/user2.jpg" alt="" data-original-title="" title="">
-                                                    <div class="d-inline-block">
-                                                        <h6>John Deo <span class="text-muted digits">(14+ Online)</span></h6>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>Designer</td>
-                                            <td>
-                                                <div class="progress-showcase">
-                                                    <div class="progress" style="height: 8px;">
-                                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 30%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="digits">2 Year</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="bd-t-none u-s-tb">
-                                                <div class="align-middle image-sm-size"><img class="img-radius align-top m-r-15 rounded-circle blur-up lazyloaded" src="/assets/images/dashboard/user1.jpg" alt="" data-original-title="" title="">
-                                                    <div class="d-inline-block">
-                                                        <h6>Holio Mako <span class="text-muted digits">(250+ Online)</span></h6>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>Developer</td>
-                                            <td>
-                                                <div class="progress-showcase">
-                                                    <div class="progress" style="height: 8px;">
-                                                        <div class="progress-bar bg-secondary" role="progressbar" style="width: 70%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="digits">3 Year</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="bd-t-none u-s-tb">
-                                                <div class="align-middle image-sm-size"><img class="img-radius align-top m-r-15 rounded-circle blur-up lazyloaded" src="/assets/images/dashboard/man.png" alt="" data-original-title="" title="">
-                                                    <div class="d-inline-block">
-                                                        <h6>Mohsib lara<span class="text-muted digits">(99+ Online)</span></h6>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>Tester</td>
-                                            <td>
-                                                <div class="progress-showcase">
-                                                    <div class="progress" style="height: 8px;">
-                                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 60%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="digits">5 Month</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="bd-t-none u-s-tb">
-                                                <div class="align-middle image-sm-size"><img class="img-radius align-top m-r-15 rounded-circle blur-up lazyloaded" src="/assets/images/dashboard/user.png" alt="" data-original-title="" title="">
-                                                    <div class="d-inline-block">
-                                                        <h6>Hileri Soli <span class="text-muted digits">(150+ Online)</span></h6>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>Designer</td>
-                                            <td>
-                                                <div class="progress-showcase">
-                                                    <div class="progress" style="height: 8px;">
-                                                        <div class="progress-bar bg-secondary" role="progressbar" style="width: 30%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="digits">3 Month</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="bd-t-none u-s-tb">
-                                                <div class="align-middle image-sm-size"><img class="img-radius align-top m-r-15 rounded-circle blur-up lazyloaded" src="/assets/images/dashboard/designer.jpg" alt="" data-original-title="" title="">
-                                                    <div class="d-inline-block">
-                                                        <h6>Pusiz bia <span class="text-muted digits">(14+ Online)</span></h6>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>Designer</td>
-                                            <td>
-                                                <div class="progress-showcase">
-                                                    <div class="progress" style="height: 8px;">
-                                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 90%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="digits">5 Year</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="code-box-copy">
-                                    <button class="code-box-copy__btn btn-clipboard" data-clipboard-target="#example-head5" title="" data-original-title="Copy"><i class="icofont icofont-copy-alt"></i></button>
-                                    <pre class=" language-html"><code class=" language-html" id="example-head5">
-&lt;div class="user-status table-responsive products-table"&gt;
-    &lt;table class="table table-bordernone mb-0"&gt;
-        &lt;thead&gt;
-            &lt;tr&gt;
-                &lt;th scope="col"&gt;Name&lt;/th&gt;
-                &lt;th scope="col"&gt;Designation&lt;/th&gt;
-                &lt;th scope="col"&gt;Skill Level&lt;/th&gt;
-                &lt;th scope="col"&gt;Experience&lt;/th&gt;
-            &lt;/tr&gt;
-        &lt;/thead&gt;
-        &lt;tbody&gt;
-                &lt;tr&gt;
-                    &lt;td class="bd-t-none u-s-tb"&gt;
-                        &lt;div class="align-middle image-sm-size"&gt;&lt;img class="img-radius align-top m-r-15 rounded-circle blur-up lazyloaded" src="/assets/images/dashboard/user2.jpg" alt="" data-original-title="" title=""&gt;
-                        &lt;div class="d-inline-block"&gt;
-                        &lt;h6&gt;John Deo &lt;span class="text-muted digits"&gt;(14+ Online)&lt;/span&gt;&lt;/h6&gt;
-                        &lt;/div&gt;
-                        &lt;/div&gt;
-                    &lt;/td&gt;
-                    &lt;td&gt;Designer&lt;/td&gt;
-                    &lt;td&gt;
-                        &lt;div class="progress-showcase"&gt;
-                        &lt;div class="progress" style="height: 8px;"&gt;
-                        &lt;div class="progress-bar bg-primary" role="progressbar" style="width: 30%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"&gt;&lt;/div&gt;
-                        &lt;/div&gt;
-                        &lt;/div&gt;
-                    &lt;/td&gt;
-                    &lt;td class="digits"&gt;2 Year&lt;/td&gt;
-                &lt;/tr&gt;
-            &lt;tr&gt;
-                &lt;td class="bd-t-none u-s-tb"&gt;
-                    &lt;div class="align-middle image-sm-size"&gt;&lt;img class="img-radius align-top m-r-15 rounded-circle blur-up lazyloaded" src="/assets/images/dashboard/user1.jpg" alt="" data-original-title="" title=""&gt;
-                    &lt;div class="d-inline-block"&gt;
-                    &lt;h6&gt;Holio Mako &lt;span class="text-muted digits"&gt;(250+ Online)&lt;/span&gt;&lt;/h6&gt;
-                    &lt;/div&gt;
-                    &lt;/div&gt;
-                &lt;/td&gt;
-                &lt;td&gt;Developer&lt;/td&gt;
-                &lt;td&gt;
-                    &lt;div class="progress-showcase"&gt;
-                    &lt;div class="progress" style="height: 8px;"&gt;
-                    &lt;div class="progress-bar bg-secondary" role="progressbar" style="width: 70%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"&gt;&lt;/div&gt;
-                    &lt;/div&gt;
-                    &lt;/div&gt;
-                &lt;/td&gt;
-                &lt;td class="digits"&gt;3 Year&lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
-                &lt;td class="bd-t-none u-s-tb"&gt;
-                    &lt;div class="align-middle image-sm-size"&gt;&lt;img class="img-radius align-top m-r-15 rounded-circle blur-up lazyloaded" src="/assets/images/dashboard/man.png" alt="" data-original-title="" title=""&gt;
-                    &lt;div class="d-inline-block"&gt;
-                    &lt;h6&gt;Mohsib lara&lt;span class="text-muted digits"&gt;(99+ Online)&lt;/span&gt;&lt;/h6&gt;
-                    &lt;/div&gt;
-                    &lt;/div&gt;
-                &lt;/td&gt;
-                &lt;td&gt;Tester&lt;/td&gt;
-                &lt;td&gt;
-                    &lt;div class="progress-showcase"&gt;
-                    &lt;div class="progress" style="height: 8px;"&gt;
-                    &lt;div class="progress-bar bg-primary" role="progressbar" style="width: 60%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"&gt;&lt;/div&gt;
-                    &lt;/div&gt;
-                    &lt;/div&gt;
-                &lt;/td&gt;
-                &lt;td class="digits"&gt;5 Month&lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
-                &lt;td class="bd-t-none u-s-tb"&gt;
-                    &lt;div class="align-middle image-sm-size"&gt;&lt;img class="img-radius align-top m-r-15 rounded-circle blur-up lazyloaded" src="/assets/images/dashboard/user.png" alt="" data-original-title="" title=""&gt;
-                    &lt;div class="d-inline-block"&gt;
-                    &lt;h6&gt;Hileri Soli &lt;span class="text-muted digits"&gt;(150+ Online)&lt;/span&gt;&lt;/h6&gt;
-                    &lt;/div&gt;
-                    &lt;/div&gt;
-                &lt;/td&gt;
-                &lt;td&gt;Designer&lt;/td&gt;
-                &lt;td&gt;
-                    &lt;div class="progress-showcase"&gt;
-                    &lt;div class="progress" style="height: 8px;"&gt;
-                    &lt;div class="progress-bar bg-secondary" role="progressbar" style="width: 30%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"&gt;&lt;/div&gt;
-                    &lt;/div&gt;
-                    &lt;/div&gt;
-                &lt;/td&gt;
-                &lt;td class="digits"&gt;3 Month&lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
-                &lt;td class="bd-t-none u-s-tb"&gt;
-                    &lt;div class="align-middle image-sm-size"&gt;&lt;img class="img-radius align-top m-r-15 rounded-circle blur-up lazyloaded" src="/assets/images/dashboard/designer.jpg" alt="" data-original-title="" title=""&gt;
-                    &lt;div class="d-inline-block"&gt;
-                    &lt;h6&gt;Pusiz bia &lt;span class="text-muted digits"&gt;(14+ Online)&lt;/span&gt;&lt;/h6&gt;
-                    &lt;/div&gt;
-                    &lt;/div&gt;
-                &lt;/td&gt;
-                &lt;td&gt;Designer&lt;/td&gt;
-                &lt;td&gt;
-                    &lt;div class="progress-showcase"&gt;
-                    &lt;div class="progress" style="height: 8px;"&gt;
-                    &lt;div class="progress-bar bg-primary" role="progressbar" style="width: 90%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"&gt;&lt;/div&gt;
-                    &lt;/div&gt;
-                    &lt;/div&gt;
-                &lt;/td&gt;
-                &lt;td class="digits"&gt;5 Year&lt;/td&gt;
-            &lt;/tr&gt;
-        &lt;/tbody&gt;
-    &lt;/table&gt;
-&lt;/div&gt;
-                                    </code></pre>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h5>Sales Status</h5>
-                                <div class="card-header-right">
-                                    <ul class="list-unstyled card-option">
-                                        <li><i class="icofont icofont-simple-left"></i></li>
-                                        <li><i class="view-html fa fa-code"></i></li>
-                                        <li><i class="icofont icofont-maximize full-card"></i></li>
-                                        <li><i class="icofont icofont-minus minimize-card"></i></li>
-                                        <li><i class="icofont icofont-refresh reload-card"></i></li>
-                                        <li><i class="icofont icofont-error close-card"></i></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-xl-3 col-sm-6 xl-50">
-                                        <div class="order-graph">
-                                            <h6>Orders By Location</h6>
-                                            <div class="chart-block chart-vertical-center">
-                                                <canvas id="myDoughnutGraph"></canvas>
-                                            </div>
-                                            <div class="order-graph-bottom">
-                                                <div class="media">
-                                                    <div class="order-color-primary"></div>
-                                                    <div class="media-body">
-                                                        <h6 class="mb-0">Saint Lucia <span class="pull-right">$157</span></h6>
-                                                    </div>
-                                                </div>
-                                                <div class="media">
-                                                    <div class="order-color-secondary"></div>
-                                                    <div class="media-body">
-                                                        <h6 class="mb-0">Kenya <span class="pull-right">$347</span></h6>
-                                                    </div>
-                                                </div>
-                                                <div class="media">
-                                                    <div class="order-color-danger"></div>
-                                                    <div class="media-body">
-                                                        <h6 class="mb-0">Liberia<span class="pull-right">$468</span></h6>
-                                                    </div>
-                                                </div>
-                                                <div class="media">
-                                                    <div class="order-color-warning"></div>
-                                                    <div class="media-body">
-                                                        <h6 class="mb-0">Christmas Island<span class="pull-right">$742</span></h6>
-                                                    </div>
-                                                </div>
-                                                <div class="media">
-                                                    <div class="order-color-success"></div>
-                                                    <div class="media-body">
-                                                        <h6 class="mb-0">Saint Helena <span class="pull-right">$647</span></h6>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-3 col-sm-6 xl-50">
-                                        <div class="order-graph sm-order-space">
-                                            <h6>Sales By Location</h6>
-                                            <div class="peity-chart-dashboard text-center">
-                                                <span class="pie-colours-1">4,7,6,5</span>
-                                            </div>
-                                            <div class="order-graph-bottom sales-location">
-                                                <div class="media">
-                                                    <div class="order-shape-primary"></div>
-                                                    <div class="media-body">
-                                                        <h6 class="mb-0 me-0">Germany <span class="pull-right">25%</span></h6>
-                                                    </div>
-                                                </div>
-                                                <div class="media">
-                                                    <div class="order-shape-secondary"></div>
-                                                    <div class="media-body">
-                                                        <h6 class="mb-0 me-0">Brasil <span class="pull-right">10%</span></h6>
-                                                    </div>
-                                                </div>
-                                                <div class="media">
-                                                    <div class="order-shape-danger"></div>
-                                                    <div class="media-body">
-                                                        <h6 class="mb-0 me-0">United Kingdom<span class="pull-right">34%</span></h6>
-                                                    </div>
-                                                </div>
-                                                <div class="media">
-                                                    <div class="order-shape-warning"></div>
-                                                    <div class="media-body">
-                                                        <h6 class="mb-0 me-0">Australia<span class="pull-right">5%</span></h6>
-                                                    </div>
-                                                </div>
-                                                <div class="media">
-                                                    <div class="order-shape-success"></div>
-                                                    <div class="media-body">
-                                                        <h6 class="mb-0 me-0">Canada <span class="pull-right">25%</span></h6>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-6 xl-100">
-                                        <div class="order-graph xl-space">
-                                            <h6>Revenue for last month</h6>
-                                            <div class="ct-4 flot-chart-container"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="code-box-copy">
-                                    <button class="code-box-copy__btn btn-clipboard" data-clipboard-target="#example-head2" title="" data-original-title="Copy"><i class="icofont icofont-copy-alt"></i></button>
-                                    <pre class=" language-html"><code class=" language-html" id="example-head2">&lt;div class="row"&gt;
-   &lt;div class="col-xl-3 col-sm-6 xl-50"&gt;
-      &lt;div class="order-graph"&gt;
-         &lt;h6&gt;Orders By Location&lt;/h6&gt;
-         &lt;div class="chart-block chart-vertical-center"&gt;
-            &lt;canvas id="myDoughnutGraph"&gt;&lt;/canvas&gt;
-         &lt;/div&gt;
-         &lt;div class="order-graph-bottom"&gt;
-            &lt;div class="media"&gt;
-               &lt;div class="order-color-primary"&gt;&lt;/div&gt;
-               &lt;div class="media-body"&gt;
-                  &lt;h6 class="mb-0"&gt;Saint Lucia &lt;span class="pull-right"&gt;$157&lt;/span&gt;&lt;/h6&gt;
-               &lt;/div&gt;
-            &lt;/div&gt;
-            &lt;div class="media"&gt;
-               &lt;div class="order-color-secondary"&gt;&lt;/div&gt;
-               &lt;div class="media-body"&gt;
-                  &lt;h6 class="mb-0"&gt;Kenya &lt;span class="pull-right"&gt;$347&lt;/span&gt;&lt;/h6&gt;
-               &lt;/div&gt;
-            &lt;/div&gt;
-            &lt;div class="media"&gt;
-               &lt;div class="order-color-danger"&gt;&lt;/div&gt;
-               &lt;div class="media-body"&gt;
-                  &lt;h6 class="mb-0"&gt;Liberia&lt;span class="pull-right"&gt;$468&lt;/span&gt;&lt;/h6&gt;
-               &lt;/div&gt;
-            &lt;/div&gt;
-            &lt;div class="media"&gt;
-               &lt;div class="order-color-warning"&gt;&lt;/div&gt;
-               &lt;div class="media-body"&gt;
-                  &lt;h6 class="mb-0"&gt;Christmas Island&lt;span class="pull-right"&gt;$742&lt;/span&gt;&lt;/h6&gt;
-               &lt;/div&gt;
-            &lt;/div&gt;
-            &lt;div class="media"&gt;
-               &lt;div class="order-color-success"&gt;&lt;/div&gt;
-               &lt;div class="media-body"&gt;
-                  &lt;h6 class="mb-0"&gt;Saint Helena &lt;span class="pull-right"&gt;$647&lt;/span&gt;&lt;/h6&gt;
-               &lt;/div&gt;
-            &lt;/div&gt;
-         &lt;/div&gt;
-      &lt;/div&gt;
-   &lt;/div&gt;
-   &lt;div class="col-xl-3 col-sm-6 xl-50"&gt;
-      &lt;div class="order-graph sm-order-space"&gt;
-         &lt;h6&gt;Sales By Location&lt;/h6&gt;
-         &lt;div class="peity-chart-dashboard text-center"&gt;
-            &lt;span class="pie-colours-1"&gt;4,7,6,5&lt;/span&gt;
-         &lt;/div&gt;
-         &lt;div class="order-graph-bottom sales-location"&gt;
-            &lt;div class="media"&gt;
-               &lt;div class="order-shape-primary"&gt;&lt;/div&gt;
-                  &lt;div class="media-body"&gt;
-                     &lt;h6 class="mb-0 me-0"&gt;Germany &lt;span class="pull-right"&gt;25%&lt;/span&gt;&lt;/h6&gt;
-                  &lt;/div&gt;
-            &lt;/div&gt;
-            &lt;div class="media"&gt;
-               &lt;div class="order-shape-secondary"&gt;&lt;/div&gt;
-               &lt;div class="media-body"&gt;
-                  &lt;h6 class="mb-0 me-0"&gt;Brasil &lt;span class="pull-right"&gt;10%&lt;/span&gt;&lt;/h6&gt;
-               &lt;/div&gt;
-            &lt;/div&gt;
-            &lt;div class="media"&gt;
-               &lt;div class="order-shape-danger"&gt;&lt;/div&gt;
-                  &lt;div class="media-body"&gt;
-                     &lt;h6 class="mb-0 me-0"&gt;United Kingdom&lt;span class="pull-right"&gt;34%&lt;/span&gt;&lt;/h6&gt;
-                  &lt;/div&gt;
-            &lt;/div&gt;
-            &lt;div class="media"&gt;
-               &lt;div class="order-shape-warning"&gt;&lt;/div&gt;
-               &lt;div class="media-body"&gt;
-                  &lt;h6 class="mb-0 me-0"&gt;Australia&lt;span class="pull-right"&gt;5%&lt;/span&gt;&lt;/h6&gt;
-               &lt;/div&gt;
-            &lt;/div&gt;
-            &lt;div class="media"&gt;
-               &lt;div class="order-shape-success"&gt;&lt;/div&gt;
-               &lt;div class="media-body"&gt;
-                  &lt;h6 class="mb-0 me-0"&gt;Canada &lt;span class="pull-right"&gt;25%&lt;/span&gt;&lt;/h6&gt;
-               &lt;/div&gt;
-            &lt;/div&gt;
-         &lt;/div&gt;
-      &lt;/div&gt;
-   &lt;/div&gt;
-   &lt;div class="col-xl-6 xl-100"&gt;
-      &lt;div class="order-graph xl-space"&gt;
-         &lt;h6&gt;Revenue for last month&lt;/h6&gt;
-         &lt;div class="ct-4 flot-chart-container"&gt;&lt;/div&gt;
-      &lt;/div&gt;
-   &lt;/div&gt;
-&lt;/div&gt;</code></pre>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <!-- Container-fluid Ends-->
-
-        </div>
-
-        <!-- footer start-->
         <footer class="footer">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-6 footer-copyright">
-                        <p class="mb-0">Copyright 2019 © Multikart All rights reserved.</p>
-                    </div>
-                    <div class="col-md-6">
-                        <p class="pull-right mb-0">Hand crafted & made with<i class="fa fa-heart"></i></p>
-                    </div>
-                </div>
-            </div>
+          <div><a href="https://coreui.io">CoreUI </a><a href="https://coreui.io">Bootstrap Admin Template</a> © 2021 creativeLabs.</div>
+          <div class="ms-auto">Powered by&nbsp;<a href="https://coreui.io/bootstrap/ui-components/">CoreUI UI Components</a></div>
         </footer>
-        <!-- footer end-->
-    </div>
+      </div>
+   </div>
 
-</div>
 </template>
 
 <script>
