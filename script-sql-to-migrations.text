@@ -1,0 +1,36 @@
+# nombre de todas las tablas 
+SHOW TABLE STATUS;
+# infromacion de tablas y columnas
+select
+*
+from
+information_schema.columns
+where
+table_schema = 'keny'
+order
+by ordinal_position asc, column_name, table_name;
+
+# Describir una tabla en particular
+DESCRIBE orders;
+
+# Saber que tablas hacen referencia a la tabla de la condicion (de aqui determinamos el orden)
+select *
+from information_schema. KEY_COLUMN_USAGE
+where table_schema = 'keny'
+and referenced_table_name = 'statuses';
+
+
+# Saber las foraneas, primary key y unique de una tabla
+select *
+from information_schema.TABLE_CONSTRAINTS
+where table_schema = 'keny'
+and table_name = 'orders';
+
+# Ver indices de una tabla
+select *
+from information_schema.STATISTICS
+where table_schema = 'keny'
+and table_name = 'orders';
+
+
+SHOW INDEX FROM keny.orders;

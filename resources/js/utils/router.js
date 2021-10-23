@@ -2,6 +2,8 @@ import VueRouter from 'vue-router'
 import Auth from '../layouts/Auth'
 import Admin from '../layouts/Admin'
 import Login from '../views/Login'
+import Dashboard from '../views/Dashboard'
+import ManageUsers from '../views/ManageUsers'
 import { beforeEnter } from './functions/routerFunctions.js'
 
 const routes =  [
@@ -28,7 +30,14 @@ const routes =  [
           path: "dashboard",
           name: "dashboard",
           components: {
-            default: Login
+            default: Dashboard
+          },
+        },
+        {
+          path: "manage-users",
+          name: "manage-users",
+          components: {
+            default: ManageUsers
           },
         },
       ]

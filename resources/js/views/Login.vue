@@ -1,88 +1,47 @@
 <template>
-    <div class="page-wrapper">
-        <div class="authentication-box">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-7" ref="loginContainer">
-                        <div class="card tab2-card">
-                            <div class="card-body">
-                                <ul
-                                    class="nav nav-tabs nav-material"
-                                    id="top-tab"
-                                    role="tablist"
-                                >
-                                    <li class="nav-item">
-                                        <a
-                                            class="nav-link active"
-                                            id="top-profile-tab"
-                                            data-bs-toggle="tab"
-                                            href="#top-profile"
-                                            role="tab"
-                                            aria-controls="top-profile"
-                                            aria-selected="true"
-                                            ><span class="icon-user me-2"></span
-                                            >Login</a
-                                        >
-                                    </li>
-                                    
-                                </ul>
-                                <div class="tab-content" id="top-tabContent">
-                                    <div
-                                        class="tab-pane fade show active"
-                                        id="top-profile"
-                                        role="tabpanel"
-                                        aria-labelledby="top-profile-tab"
-                                    >
-                                        <form class="form-horizontal auth-form" @submit.prevent="loginApi">
-                                            <div class="form-group">
-                                                <input
-                                                    required
-                                                    name="email"
-                                                    type="email"
-                                                    class="form-control"
-                                                    placeholder="Email"
-                                                    id="email"
-                                                    v-model="login.email"
-                                                />
-                                            </div>
-                                            <div class="form-group">
-                                                <input
-                                                    required
-                                                    name="password"
-                                                    type="password"
-                                                    class="form-control"
-                                                    placeholder="Contraseña"
-                                                    v-model="login.password"
-                                                />
-                                            </div>
-                                            <div class="form-terms">
-                                                <div class="form-check mesm-2">
-                                                    
-                                                    <a
-                                                        href="#"
-                                                        class="btn btn-default forgot-pass"
-                                                        >Recuperar contraseña</a
-                                                    >
-                                                </div>
-                                            </div>
-                                            <div class="form-button">
-                                                <button
-                                                    class="btn btn-primary"
-                                                    type="submit"
-                                                >
-                                                    Iniciar sesión
-                                                </button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="card-group d-block d-md-flex row">
+              <form class="card col-md-7 p-4 mb-0" @submit.prevent="loginApi">
+                <div class="card-body">
+                  <h1>Login</h1>
+                  <p class="text-medium-emphasis">Sign In to your account</p>
+                  <div class="input-group mb-3"><span class="input-group-text">
+                      <svg class="icon">
+                        <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user"></use>
+                      </svg></span>
+                    <input class="form-control" type="text" placeholder="Username" v-model="login.email">
+                  </div>
+                  <div class="input-group mb-4"><span class="input-group-text">
+                      <svg class="icon">
+                        <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-lock-locked"></use>
+                      </svg></span>
+                    <input class="form-control" type="password" placeholder="Password" v-model="login.password">
+                  </div>
+                  <div class="row">
+                    <div class="col-6">
+                      <button class="btn btn-primary px-4" type="submit">Login</button>
                     </div>
+                    <div class="col-6 text-end">
+                      <button class="btn btn-link px-0" type="button">Forgot password?</button>
+                    </div>
+                  </div>
                 </div>
+              </form>
+              <div class="card col-md-5 text-white bg-primary py-5">
+                <div class="card-body text-center">
+                  <div>
+                    <h2>Sign up</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <button class="btn btn-lg btn-outline-light mt-3" type="button">Register Now!</button>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
-    </div>
+      </div>
 </template>
 
 <script>
