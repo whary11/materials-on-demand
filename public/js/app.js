@@ -2229,120 +2229,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {};
@@ -2752,12 +2638,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _layouts_Auth__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../layouts/Auth */ "./resources/js/layouts/Auth.vue");
 /* harmony import */ var _layouts_Admin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../layouts/Admin */ "./resources/js/layouts/Admin.vue");
 /* harmony import */ var _views_Login__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../views/Login */ "./resources/js/views/Login.vue");
 /* harmony import */ var _views_Dashboard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../views/Dashboard */ "./resources/js/views/Dashboard.vue");
-/* harmony import */ var _functions_routerFunctions_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./functions/routerFunctions.js */ "./resources/js/utils/functions/routerFunctions.js.js");
+/* harmony import */ var _views_ManageUsers__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../views/ManageUsers */ "./resources/js/views/ManageUsers.vue");
+/* harmony import */ var _functions_routerFunctions_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./functions/routerFunctions.js */ "./resources/js/utils/functions/routerFunctions.js.js");
+
 
 
 
@@ -2787,9 +2675,15 @@ var routes = [{
     components: {
       "default": _views_Dashboard__WEBPACK_IMPORTED_MODULE_3__["default"]
     }
+  }, {
+    path: "manage-users",
+    name: "manage-users",
+    components: {
+      "default": _views_ManageUsers__WEBPACK_IMPORTED_MODULE_4__["default"]
+    }
   }]
 }];
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_5__["default"]({
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_6__["default"]({
   history: true,
   mode: 'history',
   routes: routes // short for `routes: routes`
@@ -40288,6 +40182,43 @@ component.options.__file = "resources/js/views/Login.vue"
 
 /***/ }),
 
+/***/ "./resources/js/views/ManageUsers.vue":
+/*!********************************************!*\
+  !*** ./resources/js/views/ManageUsers.vue ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _ManageUsers_vue_vue_type_template_id_9e01a458___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ManageUsers.vue?vue&type=template&id=9e01a458& */ "./resources/js/views/ManageUsers.vue?vue&type=template&id=9e01a458&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+var script = {}
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  script,
+  _ManageUsers_vue_vue_type_template_id_9e01a458___WEBPACK_IMPORTED_MODULE_0__.render,
+  _ManageUsers_vue_vue_type_template_id_9e01a458___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/views/ManageUsers.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/App.vue?vue&type=script&lang=js&":
 /*!*******************************************************!*\
   !*** ./resources/js/App.vue?vue&type=script&lang=js& ***!
@@ -40438,6 +40369,23 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/views/ManageUsers.vue?vue&type=template&id=9e01a458&":
+/*!***************************************************************************!*\
+  !*** ./resources/js/views/ManageUsers.vue?vue&type=template&id=9e01a458& ***!
+  \***************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ManageUsers_vue_vue_type_template_id_9e01a458___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ManageUsers_vue_vue_type_template_id_9e01a458___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ManageUsers_vue_vue_type_template_id_9e01a458___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ManageUsers.vue?vue&type=template&id=9e01a458& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/ManageUsers.vue?vue&type=template&id=9e01a458&");
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/App.vue?vue&type=template&id=f348271a&":
 /*!****************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/App.vue?vue&type=template&id=f348271a& ***!
@@ -40553,68 +40501,7 @@ var render = function() {
               1
             ),
             _vm._v(" "),
-            _c("li", { staticClass: "nav-title" }, [_vm._v("Theme")]),
-            _vm._v(" "),
-            _c("li", { staticClass: "nav-item" }, [
-              _c(
-                "a",
-                { staticClass: "nav-link", attrs: { href: "colors.html" } },
-                [
-                  _c("svg", { staticClass: "nav-icon" }, [
-                    _c("use", {
-                      attrs: {
-                        "xlink:href":
-                          "/dist/vendors/@coreui/icons/svg/free.svg#cil-drop"
-                      }
-                    })
-                  ]),
-                  _vm._v(" Colors")
-                ]
-              )
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "nav-item" }, [
-              _c(
-                "a",
-                { staticClass: "nav-link", attrs: { href: "typography.html" } },
-                [
-                  _c("svg", { staticClass: "nav-icon" }, [
-                    _c("use", {
-                      attrs: {
-                        "xlink:href":
-                          "/dist/vendors/@coreui/icons/svg/free.svg#cil-pencil"
-                      }
-                    })
-                  ]),
-                  _vm._v(" Typography")
-                ]
-              )
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "nav-title" }, [_vm._v("Components")]),
-            _vm._v(" "),
-            _c("li", { staticClass: "nav-group" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "nav-link nav-group-toggle",
-                  attrs: { href: "#" }
-                },
-                [
-                  _c("svg", { staticClass: "nav-icon" }, [
-                    _c("use", {
-                      attrs: {
-                        "xlink:href":
-                          "/dist/vendors/@coreui/icons/svg/free.svg#cil-puzzle"
-                      }
-                    })
-                  ]),
-                  _vm._v(" Base")
-                ]
-              ),
-              _vm._v(" "),
-              _vm._m(0)
-            ]),
+            _c("li", { staticClass: "nav-title" }, [_vm._v("Modulos")]),
             _vm._v(" "),
             _c("li", { staticClass: "nav-group" }, [
               _c(
@@ -40632,272 +40519,30 @@ var render = function() {
                       }
                     })
                   ]),
-                  _vm._v(" Buttons")
-                ]
-              ),
-              _vm._v(" "),
-              _vm._m(1)
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "nav-item" }, [
-              _c(
-                "a",
-                { staticClass: "nav-link", attrs: { href: "charts.html" } },
-                [
-                  _c("svg", { staticClass: "nav-icon" }, [
-                    _c("use", {
-                      attrs: {
-                        "xlink:href":
-                          "/dist/vendors/@coreui/icons/svg/free.svg#cil-chart-pie"
-                      }
-                    })
-                  ]),
-                  _vm._v(" Charts")
-                ]
-              )
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "nav-group" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "nav-link nav-group-toggle",
-                  attrs: { href: "#" }
-                },
-                [
-                  _c("svg", { staticClass: "nav-icon" }, [
-                    _c("use", {
-                      attrs: {
-                        "xlink:href":
-                          "/dist/vendors/@coreui/icons/svg/free.svg#cil-notes"
-                      }
-                    })
-                  ]),
-                  _vm._v(" Forms")
-                ]
-              ),
-              _vm._v(" "),
-              _vm._m(2)
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "nav-group" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "nav-link nav-group-toggle",
-                  attrs: { href: "#" }
-                },
-                [
-                  _c("svg", { staticClass: "nav-icon" }, [
-                    _c("use", {
-                      attrs: {
-                        "xlink:href":
-                          "/dist/vendors/@coreui/icons/svg/free.svg#cil-star"
-                      }
-                    })
-                  ]),
-                  _vm._v(" Icons")
-                ]
-              ),
-              _vm._v(" "),
-              _vm._m(3)
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "nav-group" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "nav-link nav-group-toggle",
-                  attrs: { href: "#" }
-                },
-                [
-                  _c("svg", { staticClass: "nav-icon" }, [
-                    _c("use", {
-                      attrs: {
-                        "xlink:href":
-                          "/dist/vendors/@coreui/icons/svg/free.svg#cil-bell"
-                      }
-                    })
-                  ]),
-                  _vm._v(" Notifications")
-                ]
-              ),
-              _vm._v(" "),
-              _vm._m(4)
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "nav-item" }, [
-              _c(
-                "a",
-                { staticClass: "nav-link", attrs: { href: "widgets.html" } },
-                [
-                  _c("svg", { staticClass: "nav-icon" }, [
-                    _c("use", {
-                      attrs: {
-                        "xlink:href":
-                          "/dist/vendors/@coreui/icons/svg/free.svg#cil-calculator"
-                      }
-                    })
-                  ]),
-                  _vm._v(" Widgets"),
-                  _c(
-                    "span",
-                    { staticClass: "badge badge-sm bg-info ms-auto" },
-                    [_vm._v("NEW")]
-                  )
-                ]
-              )
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "nav-divider" }),
-            _vm._v(" "),
-            _c("li", { staticClass: "nav-title" }, [_vm._v("Extras")]),
-            _vm._v(" "),
-            _c("li", { staticClass: "nav-group" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "nav-link nav-group-toggle",
-                  attrs: { href: "#" }
-                },
-                [
-                  _c("svg", { staticClass: "nav-icon" }, [
-                    _c("use", {
-                      attrs: {
-                        "xlink:href":
-                          "/dist/vendors/@coreui/icons/svg/free.svg#cil-star"
-                      }
-                    })
-                  ]),
-                  _vm._v(" Pages")
+                  _vm._v(" Usuarios")
                 ]
               ),
               _vm._v(" "),
               _c("ul", { staticClass: "nav-group-items" }, [
-                _c("li", { staticClass: "nav-item" }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "nav-link",
-                      attrs: { href: "login.html", target: "_top" }
-                    },
-                    [
-                      _c("svg", { staticClass: "nav-icon" }, [
-                        _c("use", {
-                          attrs: {
-                            "xlink:href":
-                              "/dist/vendors/@coreui/icons/svg/free.svg#cil-account-logout"
-                          }
-                        })
-                      ]),
-                      _vm._v(" Login")
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("li", { staticClass: "nav-item" }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "nav-link",
-                      attrs: { href: "register.html", target: "_top" }
-                    },
-                    [
-                      _c("svg", { staticClass: "nav-icon" }, [
-                        _c("use", {
-                          attrs: {
-                            "xlink:href":
-                              "/dist/vendors/@coreui/icons/svg/free.svg#cil-account-logout"
-                          }
-                        })
-                      ]),
-                      _vm._v(" Register")
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("li", { staticClass: "nav-item" }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "nav-link",
-                      attrs: { href: "404.html", target: "_top" }
-                    },
-                    [
-                      _c("svg", { staticClass: "nav-icon" }, [
-                        _c("use", {
-                          attrs: {
-                            "xlink:href":
-                              "/dist/vendors/@coreui/icons/svg/free.svg#cil-bug"
-                          }
-                        })
-                      ]),
-                      _vm._v(" Error 404")
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("li", { staticClass: "nav-item" }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "nav-link",
-                      attrs: { href: "500.html", target: "_top" }
-                    },
-                    [
-                      _c("svg", { staticClass: "nav-icon" }, [
-                        _c("use", {
-                          attrs: {
-                            "xlink:href":
-                              "/dist/vendors/@coreui/icons/svg/free.svg#cil-bug"
-                          }
-                        })
-                      ]),
-                      _vm._v(" Error 500")
-                    ]
-                  )
-                ])
+                _c(
+                  "li",
+                  { staticClass: "nav-item" },
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "nav-link",
+                        attrs: { tag: "a", to: { name: "manage-users" } }
+                      },
+                      [
+                        _c("span", { staticClass: "nav-icon" }),
+                        _vm._v(" Gestionar\n             ")
+                      ]
+                    )
+                  ],
+                  1
+                )
               ])
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "nav-item mt-auto" }, [
-              _c(
-                "a",
-                { staticClass: "nav-link", attrs: { href: "docs.html" } },
-                [
-                  _c("svg", { staticClass: "nav-icon" }, [
-                    _c("use", {
-                      attrs: {
-                        "xlink:href":
-                          "/dist/vendors/@coreui/icons/svg/free.svg#cil-description"
-                      }
-                    })
-                  ]),
-                  _vm._v(" Docs")
-                ]
-              )
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "nav-item" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "nav-link nav-link-danger",
-                  attrs: { href: "https://coreui.io/pro/", target: "_top" }
-                },
-                [
-                  _c("svg", { staticClass: "nav-icon" }, [
-                    _c("use", {
-                      attrs: {
-                        "xlink:href":
-                          "/dist/vendors/@coreui/icons/svg/free.svg#cil-layers"
-                      }
-                    })
-                  ]),
-                  _vm._v(" Try CoreUI\n           "),
-                  _c("div", { staticClass: "fw-semibold" }, [_vm._v("PRO")])
-                ]
-              )
             ])
           ]
         ),
@@ -40954,8 +40599,6 @@ var render = function() {
               ]
             ),
             _vm._v(" "),
-            _vm._m(5),
-            _vm._v(" "),
             _c("ul", { staticClass: "header-nav ms-auto" }, [
               _c("li", { staticClass: "nav-item" }, [
                 _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
@@ -40999,13 +40642,13 @@ var render = function() {
             _vm._v(" "),
             _c("ul", { staticClass: "header-nav ms-3" }, [
               _c("li", { staticClass: "nav-item dropdown" }, [
-                _vm._m(6),
+                _vm._m(0),
                 _vm._v(" "),
                 _c(
                   "div",
                   { staticClass: "dropdown-menu dropdown-menu-end pt-0" },
                   [
-                    _vm._m(7),
+                    _vm._m(1),
                     _c(
                       "a",
                       { staticClass: "dropdown-item", attrs: { href: "#" } },
@@ -41087,7 +40730,7 @@ var render = function() {
                       ]
                     ),
                     _vm._v(" "),
-                    _vm._m(8),
+                    _vm._m(2),
                     _c(
                       "a",
                       { staticClass: "dropdown-item", attrs: { href: "#" } },
@@ -41194,383 +40837,19 @@ var render = function() {
                 )
               ])
             ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "header-divider" }),
-          _vm._v(" "),
-          _vm._m(9)
+          ])
         ]),
         _vm._v(" "),
-        _vm._m(10),
+        _c("div", { staticClass: "body flex-grow-1 px-3" }, [
+          _c("div", { staticClass: "container-lg" }, [_c("router-view")], 1)
+        ]),
         _vm._v(" "),
-        _vm._m(11)
+        _vm._m(3)
       ]
     )
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("ul", { staticClass: "nav-group-items" }, [
-      _c("li", { staticClass: "nav-item" }, [
-        _c(
-          "a",
-          { staticClass: "nav-link", attrs: { href: "base/accordion.html" } },
-          [_c("span", { staticClass: "nav-icon" }), _vm._v(" Accordion")]
-        )
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "nav-item" }, [
-        _c(
-          "a",
-          { staticClass: "nav-link", attrs: { href: "base/breadcrumb.html" } },
-          [_c("span", { staticClass: "nav-icon" }), _vm._v(" Breadcrumb")]
-        )
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "nav-item" }, [
-        _c(
-          "a",
-          { staticClass: "nav-link", attrs: { href: "base/cards.html" } },
-          [_c("span", { staticClass: "nav-icon" }), _vm._v(" Cards")]
-        )
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "nav-item" }, [
-        _c(
-          "a",
-          { staticClass: "nav-link", attrs: { href: "base/carousel.html" } },
-          [_c("span", { staticClass: "nav-icon" }), _vm._v(" Carousel")]
-        )
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "nav-item" }, [
-        _c(
-          "a",
-          { staticClass: "nav-link", attrs: { href: "base/collapse.html" } },
-          [_c("span", { staticClass: "nav-icon" }), _vm._v(" Collapse")]
-        )
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "nav-item" }, [
-        _c(
-          "a",
-          { staticClass: "nav-link", attrs: { href: "base/list-group.html" } },
-          [_c("span", { staticClass: "nav-icon" }), _vm._v(" List group")]
-        )
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "nav-item" }, [
-        _c(
-          "a",
-          { staticClass: "nav-link", attrs: { href: "base/navs.html" } },
-          [_c("span", { staticClass: "nav-icon" }), _vm._v(" Navs")]
-        )
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "nav-item" }, [
-        _c(
-          "a",
-          { staticClass: "nav-link", attrs: { href: "base/pagination.html" } },
-          [_c("span", { staticClass: "nav-icon" }), _vm._v(" Pagination")]
-        )
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "nav-item" }, [
-        _c(
-          "a",
-          { staticClass: "nav-link", attrs: { href: "base/popovers.html" } },
-          [_c("span", { staticClass: "nav-icon" }), _vm._v(" Popovers")]
-        )
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "nav-item" }, [
-        _c(
-          "a",
-          { staticClass: "nav-link", attrs: { href: "base/progress.html" } },
-          [_c("span", { staticClass: "nav-icon" }), _vm._v(" Progress")]
-        )
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "nav-item" }, [
-        _c(
-          "a",
-          { staticClass: "nav-link", attrs: { href: "base/scrollspy.html" } },
-          [_c("span", { staticClass: "nav-icon" }), _vm._v(" Scrollspy")]
-        )
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "nav-item" }, [
-        _c(
-          "a",
-          { staticClass: "nav-link", attrs: { href: "base/spinners.html" } },
-          [_c("span", { staticClass: "nav-icon" }), _vm._v(" Spinners")]
-        )
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "nav-item" }, [
-        _c(
-          "a",
-          { staticClass: "nav-link", attrs: { href: "base/tables.html" } },
-          [_c("span", { staticClass: "nav-icon" }), _vm._v(" Tables")]
-        )
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "nav-item" }, [
-        _c(
-          "a",
-          { staticClass: "nav-link", attrs: { href: "base/tabs.html" } },
-          [_c("span", { staticClass: "nav-icon" }), _vm._v(" Tabs")]
-        )
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "nav-item" }, [
-        _c(
-          "a",
-          { staticClass: "nav-link", attrs: { href: "base/tooltips.html" } },
-          [_c("span", { staticClass: "nav-icon" }), _vm._v(" Tooltips")]
-        )
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("ul", { staticClass: "nav-group-items" }, [
-      _c("li", { staticClass: "nav-item" }, [
-        _c(
-          "a",
-          { staticClass: "nav-link", attrs: { href: "buttons/buttons.html" } },
-          [_c("span", { staticClass: "nav-icon" }), _vm._v(" Buttons")]
-        )
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "nav-item" }, [
-        _c(
-          "a",
-          {
-            staticClass: "nav-link",
-            attrs: { href: "buttons/button-group.html" }
-          },
-          [_c("span", { staticClass: "nav-icon" }), _vm._v(" Buttons Group")]
-        )
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "nav-item" }, [
-        _c(
-          "a",
-          {
-            staticClass: "nav-link",
-            attrs: { href: "buttons/dropdowns.html" }
-          },
-          [_c("span", { staticClass: "nav-icon" }), _vm._v(" Dropdowns")]
-        )
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("ul", { staticClass: "nav-group-items" }, [
-      _c("li", { staticClass: "nav-item" }, [
-        _c(
-          "a",
-          {
-            staticClass: "nav-link",
-            attrs: { href: "forms/form-control.html" }
-          },
-          [_vm._v(" Form Control")]
-        )
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "nav-item" }, [
-        _c(
-          "a",
-          { staticClass: "nav-link", attrs: { href: "forms/select.html" } },
-          [_vm._v(" Select")]
-        )
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "nav-item" }, [
-        _c(
-          "a",
-          {
-            staticClass: "nav-link",
-            attrs: { href: "forms/checks-radios.html" }
-          },
-          [_vm._v(" Checks and radios")]
-        )
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "nav-item" }, [
-        _c(
-          "a",
-          { staticClass: "nav-link", attrs: { href: "forms/range.html" } },
-          [_vm._v(" Range")]
-        )
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "nav-item" }, [
-        _c(
-          "a",
-          {
-            staticClass: "nav-link",
-            attrs: { href: "forms/input-group.html" }
-          },
-          [_vm._v(" Input group")]
-        )
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "nav-item" }, [
-        _c(
-          "a",
-          {
-            staticClass: "nav-link",
-            attrs: { href: "forms/floating-labels.html" }
-          },
-          [_vm._v(" Floating labels")]
-        )
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "nav-item" }, [
-        _c(
-          "a",
-          { staticClass: "nav-link", attrs: { href: "forms/layout.html" } },
-          [_vm._v(" Layout")]
-        )
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "nav-item" }, [
-        _c(
-          "a",
-          { staticClass: "nav-link", attrs: { href: "forms/validation.html" } },
-          [_vm._v(" Validation")]
-        )
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("ul", { staticClass: "nav-group-items" }, [
-      _c("li", { staticClass: "nav-item" }, [
-        _c(
-          "a",
-          {
-            staticClass: "nav-link",
-            attrs: { href: "icons/coreui-icons-free.html" }
-          },
-          [
-            _vm._v(" CoreUI Icons"),
-            _c("span", { staticClass: "badge badge-sm bg-success ms-auto" }, [
-              _vm._v("Free")
-            ])
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "nav-item" }, [
-        _c(
-          "a",
-          {
-            staticClass: "nav-link",
-            attrs: { href: "icons/coreui-icons-brand.html" }
-          },
-          [_vm._v(" CoreUI Icons - Brand")]
-        )
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "nav-item" }, [
-        _c(
-          "a",
-          {
-            staticClass: "nav-link",
-            attrs: { href: "icons/coreui-icons-flag.html" }
-          },
-          [_vm._v(" CoreUI Icons - Flag")]
-        )
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("ul", { staticClass: "nav-group-items" }, [
-      _c("li", { staticClass: "nav-item" }, [
-        _c(
-          "a",
-          {
-            staticClass: "nav-link",
-            attrs: { href: "notifications/alerts.html" }
-          },
-          [_c("span", { staticClass: "nav-icon" }), _vm._v(" Alerts")]
-        )
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "nav-item" }, [
-        _c(
-          "a",
-          {
-            staticClass: "nav-link",
-            attrs: { href: "notifications/badge.html" }
-          },
-          [_c("span", { staticClass: "nav-icon" }), _vm._v(" Badge")]
-        )
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "nav-item" }, [
-        _c(
-          "a",
-          {
-            staticClass: "nav-link",
-            attrs: { href: "notifications/modals.html" }
-          },
-          [_c("span", { staticClass: "nav-icon" }), _vm._v(" Modals")]
-        )
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "nav-item" }, [
-        _c(
-          "a",
-          {
-            staticClass: "nav-link",
-            attrs: { href: "notifications/toasts.html" }
-          },
-          [_c("span", { staticClass: "nav-icon" }), _vm._v(" Toasts")]
-        )
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("ul", { staticClass: "header-nav d-none d-md-flex" }, [
-      _c("li", { staticClass: "nav-item" }, [
-        _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-          _vm._v("Dashboard")
-        ])
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "nav-item" }, [
-        _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-          _vm._v("Users")
-        ])
-      ]),
-      _vm._v(" "),
-      _c("li", { staticClass: "nav-item" }, [
-        _c("a", { staticClass: "nav-link", attrs: { href: "#" } }, [
-          _vm._v("Settings")
-        ])
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -41614,32 +40893,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "dropdown-header bg-light py-2" }, [
       _c("div", { staticClass: "fw-semibold" }, [_vm._v("Settings")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container-fluid" }, [
-      _c("nav", { attrs: { "aria-label": "breadcrumb" } }, [
-        _c("ol", { staticClass: "breadcrumb my-0 ms-2" }, [
-          _c("li", { staticClass: "breadcrumb-item" }, [
-            _c("span", [_vm._v("Home")])
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "breadcrumb-item active" }, [
-            _c("span", [_vm._v("Dashboard")])
-          ])
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "body flex-grow-1 px-3" }, [
-      _c("div", { staticClass: "container-lg" })
     ])
   },
   function() {
@@ -41916,6 +41169,31 @@ var staticRenderFns = [
     )
   }
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/ManageUsers.vue?vue&type=template&id=9e01a458&":
+/*!******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/ManageUsers.vue?vue&type=template&id=9e01a458& ***!
+  \******************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [_vm._v("\n    Mamage users   \n")])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 

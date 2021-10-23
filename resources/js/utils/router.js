@@ -3,6 +3,7 @@ import Auth from '../layouts/Auth'
 import Admin from '../layouts/Admin'
 import Login from '../views/Login'
 import Dashboard from '../views/Dashboard'
+import ManageUsers from '../views/ManageUsers'
 import { beforeEnter } from './functions/routerFunctions.js'
 
 const routes =  [
@@ -30,6 +31,13 @@ const routes =  [
           name: "dashboard",
           components: {
             default: Dashboard
+          },
+        },
+        {
+          path: "manage-users",
+          name: "manage-users",
+          components: {
+            default: ManageUsers
           },
         },
       ]
