@@ -8,7 +8,9 @@ import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
 import canMixin from './utils/mixins/can'
 import userMixin from './utils/mixins/user'
-import {ServerTable, ClientTable, Event} from 'vue-tables-2';
+import {ServerTable} from 'vue-tables-2';
+import VModal from 'vue-js-modal/dist/index.nocss.js'
+import 'vue-js-modal/dist/styles.css'
 
 
 
@@ -37,6 +39,8 @@ Vue.use(ServerTable,{
     }
 
 })
+Vue.use(VModal)
+
 
 
 // mixins

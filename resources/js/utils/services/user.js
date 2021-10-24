@@ -17,8 +17,9 @@ export const login = async (auth) => {
     }
 }
 
-export const getUsersManage = async (data) => {
+export const getUsersManage = async (data, vue) => {
     try {
+        let loading = vue.$loading.show({container:vue.$refs.tableUsersManage})
 
         let route = '/api/user/get_users_manage'
         
@@ -27,7 +28,7 @@ export const getUsersManage = async (data) => {
             data: result.data,
             count: result.count
         }
-        console.log(result);
+        loading.hide()
         return result
     } catch (error) {
         return error

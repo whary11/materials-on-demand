@@ -44,60 +44,63 @@ class UserController extends Controller
     }
 
     public function getUsersManage(Request $request){
-        $offset = 0;
+        $limit = isset($request->limit) ? $request->limit: 15;
+        $offset = isset($request->page)?(($request->page - 1) * $limit):null;
+
         $users = $this->executeReadSp("CALL ksp_get_users_manage(:p_offset, :p_limit)",[
             'p_offset' => $offset,
-            'p_limit' => $request->limit,
+            'p_limit' => $limit,
         ]);
         $newUsers = [];
         foreach ($users['data'] as $key => $user) {
             $user = (Array) $user;
             $headquarters = explode('&&&&&', $user['headquarters_name']);
             $newHeadquarters = [];
+            
             foreach ($headquarters as $key => $headquarter) {
                 $headquarter = explode('|||||', $headquarter);
+                $finlRoles = [];
                 // Consultar roles por bodega.
+                $roles = $this->executeReadSp("CALL ksp_get_roles_to_user(:p_user_headquarter_id)",[
+                    'p_user_headquarter_id' => $headquarter[2],
+                ]);
+                $roles = array_map(function ($role){
+                    return (Array) $role;
+                },$roles['data']);
 
+                $newRoles = collect($roles)->groupBy("role_name")->values()->toArray();
+                $r = [];
+                foreach ($newRoles as $key => $newRole) {
+                    $permissions = [];
+                    foreach ($newRole as $key => $rr) {
+                        if (isset($rr['permission_id'])) {
+                            array_push($permissions, [
+                                'id' => $rr['permission_id'],
+                                'name' => $rr['permission_name']
+                            ]);
+                        }
+                    }
+
+                    // dd($newRole);
+                    $newRole = [
+                        'name' => $newRole[0]['role_name'],
+                        'permissions' => $permissions
+                    ];
+                    array_push($finlRoles, $newRole);
+                }
                 // Consultar permisos especiales.
                 $headquarter = [
                     'id' => $headquarter[0],
                     'name' => $headquarter[1],
                     'permissions' => [],
-                    'roles' => [],
+                    'roles' => $finlRoles,
                 ];
                 array_push($newHeadquarters,$headquarter);
             }
             $user['headquarters'] = $newHeadquarters;
             array_push($newUsers,$user);
         }
-
-
-
-        return ['data' => $newUsers, 'count' => count($newUsers)];
-        return [
-            'data' => [
-                [
-                    'id' => 1,
-                    'fullname' => 'Luis Fernando Raga Renteria',
-                    'age' => 31,
-                    'email' => 'whary11@gmail.com',
-                    'avatar'=>'https://scontent.fbog11-1.fna.fbcdn.net/v/t1.6435-1/p160x160/67654490_10218672031367891_7179299875513696256_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=dbb9e7&_nc_ohc=BPI0w_1xZLEAX8ZTXc0&_nc_ht=scontent.fbog11-1.fna&oh=67c557923a9dc4c94f4606c0e4639201&oe=619B2085',
-                    'headquarters' => [
-                        [
-                            'id' => 1,
-                        'name' => 'Sur de bogotá',
-                        'permissions' => ['crear usuarios', 'ver usuarios','crear usuarios', 'ver usuarios','crear usuarios', 'ver usuarios','crear usuarios', 'ver usuarios','crear usuarios', 'ver usuarios','crear usuarios', 'ver usuarios','crear usuarios', 'ver usuarios','crear usuarios', 'ver usuarios','crear usuarios', 'ver usuarios','crear usuarios', 'ver usuarios','crear usuarios', 'ver usuarios','crear usuarios', 'ver usuarios','crear usuarios', 'ver usuarios','crear usuarios', 'ver usuarios'],
-                        'roles' => [
-                            ['name' => 'ADMIN', 'permissions' => ['crear usuarios', 'ver usuarios','crear usuarios', 'ver usuarios','crear usuarios', 'ver usuarios','crear usuarios', 'ver usuarios','crear usuarios', 'ver usuarios','crear usuarios', 'ver usuarios','crear usuarios', 'ver usuarios']],
-                            ['name' => 'TEST', 'permissions' => ['crear usuarios', 'ver usuarios','crear usuarios', 'ver usuarios','crear usuarios', 'ver usuarios','crear usuarios', 'ver usuarios','crear usuarios', 'ver usuarios','crear usuarios', 'ver usuarios','crear usuarios', 'ver usuarios']],
-                            ['name' => 'SUPER_ADMIN', 'permissions' => []],
-                        ]
-                        ]
-                    ]
-                ],
-                
-            ],
-            'count' => 100
-        ];
+        return ['data' => $newUsers, 'count' => count($newUsers) == 0 ? 0 : $newUsers[0]['count']];
+        
     }
 }

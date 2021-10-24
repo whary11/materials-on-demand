@@ -1,7 +1,7 @@
 <template>
     <div class="card">
-        <div class="card-body">
-            <v-server-table :columns="columns" :options="{requestFunction,headings}">
+        <div class="card-body" ref="tableUsersManage">
+            <v-server-table :columns="columns" :options="{requestFunction,headings}" >
                 <template slot="avatar" slot-scope="{row}">
                     <div>
                         <div class="avatar avatar-md shadow">
@@ -40,7 +40,7 @@
                         <h5>Permisos</h5>
                         <button class="btn btn-dark btn-sm rounded-pill" type="button">Agregar permiso</button>
                         <span class="rounded-pill badge bg-success m-1" v-for="(permission, key) in item.permissions" :key="key+1*202020200202020">
-                            {{ permission }}
+                            {{ permission.name }}
                         </span>
                         <h5>Roles</h5>
                         <button class="btn btn-dark btn-sm rounded-pill" type="button">Agregar rol</button>
@@ -52,7 +52,7 @@
 
                             <br>
                             <span class="rounded-pill badge bg-success m-1" v-for="(permission, key) in role.permissions" :key="key+1*1000">
-                                {{ permission }}
+                                {{ permission.name }}
                             </span>
                         </div>
                     </div>
@@ -63,6 +63,11 @@
 
 
         </div>
+
+
+        <modal name="add_headquarter">
+            {{ userEdit }}
+        </modal>
     </div>
 </template>
 
@@ -75,14 +80,17 @@ export default {
             headings: {
                 headquarters: "Sedes",
                 options: ''
-            }
+            },
+            userEdit:{}
         }
     },
     methods: {
         requestFunction(data) {
-            return  getUsersManage(data)
+            return getUsersManage(data, this)
         },
         addHeadquarter(user){
+            this.userEdit = user
+            this.$modal.show('add_headquarter')
             console.log("------------addHeadquarter-----------------");
             console.log(user);
             console.log("------------addHeadquarter-----------------");
