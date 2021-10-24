@@ -27,6 +27,7 @@
     "dependencies": {
         "js-sha1": "^0.6.0",
         "vue-loading-overlay": "^3.4.2",
-        "vue-router": "^3.5.2"
+        "vue-router": "^3.5.2",
+        "vue-tables-2": "^2.3.3"
     }
 }

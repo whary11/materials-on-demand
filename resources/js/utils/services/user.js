@@ -16,3 +16,22 @@ export const login = async (auth) => {
         return error
     }
 }
+
+export const getUsersManage = async (data) => {
+    try {
+
+        let route = '/api/user/get_users_manage'
+        
+        let result = await post({route, data})
+        result.data = {
+            data: result.data,
+            count: result.count
+        }
+        console.log(result);
+        return result
+    } catch (error) {
+        return error
+    }
+}
+
+

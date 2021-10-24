@@ -25,3 +25,8 @@ Route::group(['middleware' => ['auth_custom'],'prefix' => 'product'], function()
     Route::post('get-all', [ProductController::class, 'getAll']);
 });
 
+
+Route::group(['middleware' => [],'prefix' => 'user'], function(){
+    Route::post('/get_users_manage', [UserController::class, 'getUsersManage']);
+});
+
