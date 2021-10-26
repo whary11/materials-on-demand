@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Repositories\SecurityRepository;
 use App\Repositories\UserRepository;
+use App\Traits\Headquarter;
 use App\Traits\Sp;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    use Sp;
+    use Headquarter;
     private $userRepository;
     private $securityRepository;
     public function __construct(){
@@ -39,7 +40,7 @@ class UserController extends Controller
                 return $this->responseApi(false, ['type' => 'error', 'content' => 'Credenciales incorrectas']);
             }
         } catch (\Throwable $th) {
-            $this->responseApi(false, ['type' => 'error', 'content' => $th->getMessage()]);
+            return $this->responseApi(false, ['type' => 'error', 'content' => $th->getMessage()]);
         }
     }
 
@@ -102,5 +103,22 @@ class UserController extends Controller
         }
         return ['data' => $newUsers, 'count' => count($newUsers) == 0 ? 0 : $newUsers[0]['count']];
         
+    }
+
+    public function getHeadquartersNotUser(Request $request):Array{
+        $resp = $this->executeReadSp("CALL ksp_get_headquarters_not_user(:p_user_id,:p_search)", [
+            'p_user_id' => $request->user_id,
+            'p_search' => $request->search
+        ]);
+        return $this->responseApi(true, ['type' => 'success', 'content' => 'Todo bien'], $resp['data']);
+    }
+
+    public function addHeadquarters(Request $request):Array{
+        $resp = $this->addHeadquartersToUser($request->user_id, $request->headquarters);
+
+        if ($resp["status"]) {
+            return $this->responseApi(true, ['type' => 'success', 'content' => 'Bodega asignada.'], $resp);
+            # code...
+        }
     }
 }

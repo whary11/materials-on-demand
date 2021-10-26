@@ -30,3 +30,8 @@ Route::group(['middleware' => [],'prefix' => 'user'], function(){
     Route::post('/get_users_manage', [UserController::class, 'getUsersManage']);
 });
 
+Route::group(['middleware' => [],'prefix' => 'user'], function(){
+    Route::post('get_headquarters_not_user', [UserController::class, 'getHeadquartersNotUser']);
+    Route::post('add_headquarter_to_user', [UserController::class, 'addHeadquarters']);
+});
+

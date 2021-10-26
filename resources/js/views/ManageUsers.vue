@@ -1,7 +1,7 @@
 <template>
     <div class="card">
         <div class="card-body" ref="tableUsersManage">
-            <v-server-table :columns="columns" :options="{requestFunction,headings}" >
+            <v-server-table :columns="columns" :options="{requestFunction,headings}" ref="usersManageTable">
                 <template slot="avatar" slot-scope="{row}">
                     <div>
                         <div class="avatar avatar-md shadow">
@@ -64,16 +64,19 @@
 
         </div>
 
-
-        <modal name="add_headquarter">
-            {{ userEdit }}
-        </modal>
+        <AddHeadquarter :user="userEdit" @addHeadquarter="addHeadquarterEvent"/>
+        
     </div>
 </template>
 
 <script>
 import { getUsersManage } from '../utils/services/user';
+import AddHeadquarter from '../components/ManageUsers/AddHeadquarter';
+
 export default {
+    components:{
+        AddHeadquarter
+    },
     data() {
         return {
             columns: ['id','avatar','fullname','email','headquarters','options'],
@@ -94,8 +97,11 @@ export default {
             console.log("------------addHeadquarter-----------------");
             console.log(user);
             console.log("------------addHeadquarter-----------------");
+        },
+        addHeadquarterEvent(){
+            this.$refs.usersManageTable.refresh()
         }
-    },
+    }
 
 
 
