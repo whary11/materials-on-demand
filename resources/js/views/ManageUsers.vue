@@ -34,7 +34,7 @@
                     </div>
                 </template>
                 <template v-slot:child_row="{row}">
-                    <SubRow :row="row" @addPermissions="addHeadquarterEvent"/>
+                    <SubRow :row="row" @addPermissions="addHeadquarterEvent" @addRoles="addHeadquarterEvent"/>
                 </template>
             </v-server-table>
         </div>

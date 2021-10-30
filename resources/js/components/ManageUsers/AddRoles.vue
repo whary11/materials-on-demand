@@ -1,15 +1,15 @@
 <template>
     <div>
-        <modal name="add_permissions" :width="500"
+        <modal name="add_roles" :width="500"
          :height="200"
          :adaptive="true"
          class="modal-dialog"
          role="document">
-            <div class="modal-content" ref="add_permissions">
+            <div class="modal-content" ref="add_roles">
                 <div class="modal-header" >
-                    <p class="modal-title">Agregar permisos para  <b>( {{ userdd.fullname }} )</b></p>
+                    <p class="modal-title">Agregar roles para  <b>( {{ userdd.fullname }} )</b></p>
                     <div slot="top-right">
-                        <button @click="$modal.hide('add_permissions')">
+                        <button @click="$modal.hide('add_roles')">
                             ❌
                         </button>
                     </div>
@@ -22,15 +22,15 @@
                         <div style="width: 430px !important">
                             <v-select 
                                 multiple 
-                                v-model="permissions" 
+                                v-model="roles" 
                                 :options="options"
-                                @search="getPermissions"
+                                @search="getRoles"
                                 label="description" 
-                                placeholder="Seleccionar permisos">
+                                placeholder="Seleccionar roles">
 
 
                                 <template #no-options>
-                                    Buscar permisos
+                                    Buscar roles
                                 </template>
                                 <template #open-indicator="{ attributes }">
                                     <span v-bind="attributes">🔽</span>
@@ -40,7 +40,7 @@
                             </v-select>
                         </div>
                         <div>
-                            <button style="height:34px !important;" class="btn btn-primary" @click.prevent="addPermissions">+</button>
+                            <button style="height:34px !important;" class="btn btn-primary" @click.prevent="addRoles">+</button>
                         </div>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import { addPermissionsToUser, getPermissions } from '../../utils/services/user'
+import { addRolesToUser, getRoles } from '../../utils/services/user'
 export default {
     props:{
         userdd: {
@@ -65,7 +65,7 @@ export default {
     },
     data() {
         return {
-            permissions:[],
+            roles:[],
             options:[],
         }
     },
@@ -73,31 +73,31 @@ export default {
         console.log(this.user_headquarter_id)
     },
     methods: {
-        async getPermissions(search, loading){
+        async getRoles(search, loading){
             let data = {
                 user_id: this.userdd.id,
                 search
             }
             loading(true)
-            let resp = await getPermissions(data, this)
+            let resp = await getRoles(data, this)
             loading(false)
             this.options = resp.data
         },
-        async addPermissions(){
+        async addRoles(){
 
             console.log(this.headquarter);
-            if (this.permissions.length > 0) {
-                let permissions = this.permissions.map(p => p.name);
+            if (this.roles.length > 0) {
+                let roles = this.roles.map(r => r.id);
                 let user_headquarter_id = this.user_headquarter_id
                     console.log("headquarter: ",this.headquarter);
-                let resp = await addPermissionsToUser({user_headquarter_id,permissions}, this);
+                let resp = await addRolesToUser({user_headquarter_id,roles}, this);
                 if (resp.transaction.status) {
-                    this.$modal.hide("add_permissions");
-                    this.$emit("addPermissions", this.permissions)
-                    this.$modal.hide('add_permissions')
+                    this.$modal.hide("add_roles");
+                    this.$emit("addRoles", this.roles)
+                    this.$modal.hide('add_roles')
                     this.notification('show', {
                         title: `<b class="text-success">Excelente !</b>`,
-                        content: 'Permisos agregados con éxito.',
+                        content: 'Roles agregados con éxito.',
                     })
                 }
             }

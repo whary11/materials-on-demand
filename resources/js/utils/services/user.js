@@ -94,6 +94,38 @@ export const addPermissionsToUser = async (data, vue) => {
 }
 
 
+export const getRoles = async (data, vue) => {
+    try {
+
+        let route = '/api/permission/get_roles'
+        
+        let result = await post({route, data})
+    
+        return result
+    } catch (error) {
+        return error
+    }
+}
+
+
+export const addRolesToUser = async (data, vue) => {
+    try {
+        let loading = vue.$loading.show({container:vue.$refs.add_headquarter})
+
+        let route = '/api/user/add_roles_to_user'
+        
+        let result = await post({route, data})
+    
+        loading.hide()
+        return result
+    } catch (error) {
+        return error
+    }
+}
+
+
+
+
 
 
 

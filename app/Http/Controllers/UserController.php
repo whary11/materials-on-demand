@@ -137,4 +137,9 @@ class UserController extends Controller
         $resp = $this->addPermissionsToUser($request->user_headquarter_id, $request->permissions);
         return $this->responseApi($resp["status"], ['type' => $resp["status"] ? 'success' : 'error', 'content' => $resp["message"]], $resp);
     }
+
+    public function addRoles(Request $request):Array{
+        $resp = $this->addRolesToUser($request->user_headquarter_id, $request->roles);
+        return $this->responseApi($resp["status"], ['type' => $resp["status"] ? 'success' : 'error', 'content' => $resp["message"]], $resp);
+    }
 }
