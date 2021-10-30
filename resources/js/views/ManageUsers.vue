@@ -2,7 +2,7 @@
     <div class="card">
         <div class="card-body" ref="tableUsersManage">
             <button class="btn btn-primary"><i class="cis-user-female-plus"></i> Crear usuario</button>
-            <v-server-table :columns="columns" :options="{requestFunction,headings}" ref="usersManageTable">
+            <v-server-table :columns="columns" :options="{requestFunction,headings,childRowTogglerFirst:false}" ref="usersManageTable">
                 <template slot="avatar" slot-scope="{row}">
                     <div>
                         <div class="avatar avatar-md shadow">

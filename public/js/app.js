@@ -2704,6 +2704,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
               case 9:
+                _this2.options = [];
+
+              case 10:
               case "end":
                 return _context2.stop();
             }
@@ -2789,6 +2792,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     addRoles: function addRoles(roles) {
       this.$emit("addRoles", roles);
+      this.user_headquarter_id = null;
     },
     show: function show(name) {
       var _this = this;
@@ -45589,7 +45593,8 @@ var render = function() {
               columns: _vm.columns,
               options: {
                 requestFunction: _vm.requestFunction,
-                headings: _vm.headings
+                headings: _vm.headings,
+                childRowTogglerFirst: false
               }
             },
             scopedSlots: _vm._u([

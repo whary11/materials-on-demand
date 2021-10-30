@@ -59,6 +59,7 @@ export default {
         },
         addRoles(roles){
             this.$emit("addRoles", roles)
+            this.user_headquarter_id = null
         },
         show(name,data = {}){
             this.user_headquarter_id = data.user_headquarter_id
