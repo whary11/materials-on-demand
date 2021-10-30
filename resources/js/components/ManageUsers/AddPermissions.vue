@@ -1,15 +1,15 @@
 <template>
     <div>
-        <modal name="add_headquarter" :width="500"
+        <modal name="add_permissions" :width="500"
          :height="200"
          :adaptive="true"
          class="modal-dialog"
          role="document">
-            <div class="modal-content" ref="add_headquarter">
+            <div class="modal-content" ref="add_permissions">
                 <div class="modal-header" >
-                    <p class="modal-title">Agregar sede para  <b>( {{ userdrdr.fullname }} )</b></p>
+                    <p class="modal-title">Agregar permisos para  <b>( {{ userdd.fullname }} )</b></p>
                     <div slot="top-right">
-                        <button @click="$modal.hide('add_headquarter')">
+                        <button @click="$modal.hide('add_permissions')">
                             ❌
                         </button>
                     </div>
@@ -22,15 +22,15 @@
                         <div style="width: 430px !important">
                             <v-select 
                                 multiple 
-                                v-model="headquarters" 
+                                v-model="permissions" 
                                 :options="options"
-                                @search="getHeadquarters"
-                                label="name" 
-                                placeholder="Seleccionar sede">
+                                @search="getPermissions"
+                                label="description" 
+                                placeholder="Seleccionar permisos">
 
 
                                 <template #no-options>
-                                    Busca una sede que el ususario aún no tenga agregada.
+                                    Buscar permisos
                                 </template>
                                 <template #open-indicator="{ attributes }">
                                     <span v-bind="attributes">🔽</span>
@@ -40,52 +40,58 @@
                             </v-select>
                         </div>
                         <div>
-                            <button style="height:34px !important;" class="btn btn-primary" @click.prevent="addHeadquarter">+</button>
+                            <button style="height:34px !important;" class="btn btn-primary" @click.prevent="addPermissions">+</button>
                         </div>
                     </div>
                 </div>
             </div>
         </modal>
+        <button class="btn btn-dark btn-sm rounded-pill" type="button" @click.prevent="$modal.show('add_permissions')">Agregar permisos</button>
     </div>
 </template>
 
 <script>
-import { addHeadquartersToUser, getHeadquartersNotUser } from '../../utils/services/user'
+import { addPermissionsToUser, getPermissions } from '../../utils/services/user'
 export default {
     props:{
-        userdrdr: {
+        userdd: {
             type: Object,
-            require: true,
-        }
+            required: true,
+        },
+        headquarter: {
+            type: Object,
+            required: true,
+        },
     },
     data() {
         return {
-            headquarters:[],
+            permissions:[],
             options:[],
         }
     },
     methods: {
-        async getHeadquarters(search, loading){
+        async getPermissions(search, loading){
             let data = {
-                user_id: this.user.id,
+                user_id: this.userdd.id,
                 search
             }
             loading(true)
-            let resp = await getHeadquartersNotUser(data, this)
+            let resp = await getPermissions(data, this)
             loading(false)
             this.options = resp.data
         },
-        async addHeadquarter(){
-            if (this.headquarters.length > 0) {
-                let headquarters = this.headquarters.map(h => h.id);
-                let resp = await addHeadquartersToUser({user_id:this.userdd.id,headquarters}, this);
+        async addPermissions(){
+            if (this.permissions.length > 0) {
+                let permissions = this.permissions.map(p => p.name);
+                    console.log("headquarter: ",this.headquarter);
+                let resp = await addPermissionsToUser({user_headquarter_id:this.headquarter.user_headquarter_id,permissions}, this);
                 if (resp.transaction.status) {
-                    this.$modal.hide("add_headquarter");
-                    this.$emit("addHeadquarter")
+                    this.$modal.hide("add_permissions");
+                    this.$emit("addPermissions", this.permissions)
+                    this.$modal.hide('add_permissions')
                     this.notification('show', {
                         title: `<b class="text-success">Excelente !</b>`,
-                        content: 'Sede agregada con éxito.',
-                        // time: 1000
+                        content: 'Permisos agregados con éxito.',
                     })
                 }
             }

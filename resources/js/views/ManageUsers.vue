@@ -1,6 +1,7 @@
 <template>
     <div class="card">
         <div class="card-body" ref="tableUsersManage">
+            <button class="btn btn-primary"><i class="cis-user-female-plus"></i> Crear usuario</button>
             <v-server-table :columns="columns" :options="{requestFunction,headings}" ref="usersManageTable">
                 <template slot="avatar" slot-scope="{row}">
                     <div>
@@ -27,55 +28,31 @@
                                 <use xlink:href="/dist/vendors/@coreui/icons/svg/free.svg#cil-options"></use>
                             </svg>
                         </button>
-                        <div class="dropdown-menu dropdown-menu-end options-dmenu" style="position:absolute;inset: auto auto 0px 0px; margin: 0px; transform: translate3d(-142px, -28px, 0px);">
-                            <a class="dropdown-item text-dark" href="#" @click.prevent="addHeadquarter(row)">Agregar sede</a>
-                            <!-- <a class="dropdown-item" href="#">Edit</a>
-                            <a class="dropdown-item text-danger" href="#">Delete</a> -->
+                        <div class="dropdown-menu dropdown-menu-end options-dmenu" style="position:absolute;inset: auto auto 0px 0px; margin: 0px; transform: translate3d(-142px, -28px, 0px);" v-if="can(['add_headquarters_to_user'])">
+                            <a v-if="can(['add_headquarters_to_user'])" class="dropdown-item text-dark" href="#" @click.prevent="addHeadquarter(row)">Agregar sede</a>
                         </div>
                     </div>
                 </template>
                 <template v-slot:child_row="{row}">
-                    <div v-for="(item, index) in row.headquarters" :key="index">
-                        <h3>{{ item.name }}</h3>
-                        <h5>Permisos</h5>
-                        <button class="btn btn-dark btn-sm rounded-pill" type="button">Agregar permiso</button>
-                        <span class="rounded-pill badge bg-success m-1" v-for="(permission, key) in item.permissions" :key="key+1*202020200202020">
-                            {{ permission.name }}
-                        </span>
-                        <h5>Roles</h5>
-                        <button class="btn btn-dark btn-sm rounded-pill" type="button">Agregar rol</button>
-
-                        <div v-for="(role, key) in item.roles" :key="key*100">
-                            <span class="rounded-pill badge bg-danger m-1" >
-                                {{ role.name }}
-                            </span>
-
-                            <br>
-                            <span class="rounded-pill badge bg-success m-1" v-for="(permission, key) in role.permissions" :key="key+1*1000">
-                                {{ permission.name }}
-                            </span>
-                        </div>
-                    </div>
+                    <SubRow :row="row" @addPermissions="addHeadquarterEvent"/>
                 </template>
             </v-server-table>
-
-
-
-
         </div>
-
-        <AddHeadquarter :user="userEdit" @addHeadquarter="addHeadquarterEvent"/>
-        
+        <template v-if="can(['add_headquarters_to_user'])">
+            <AddHeadquarter :userdrdr="userEdit" @addHeadquarter="addHeadquarterEvent"/>
+        </template>
     </div>
 </template>
 
 <script>
 import { getUsersManage } from '../utils/services/user';
 import AddHeadquarter from '../components/ManageUsers/AddHeadquarter';
+import SubRow from '../components/ManageUsers/SubRow';
 
 export default {
     components:{
-        AddHeadquarter
+        AddHeadquarter,
+        SubRow
     },
     data() {
         return {
@@ -86,6 +63,9 @@ export default {
             },
             userEdit:{}
         }
+    },
+    mounted() {
+       
     },
     methods: {
         requestFunction(data) {

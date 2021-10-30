@@ -37,13 +37,11 @@ export const getUsersManage = async (data, vue) => {
 
 export const getHeadquartersNotUser = async (data, vue) => {
     try {
-        let loading = vue.$loading.show({container:vue.$refs.add_headquarter})
 
         let route = '/api/user/get_headquarters_not_user'
         
         let result = await post({route, data})
     
-        loading.hide()
         return result
     } catch (error) {
         return error
@@ -55,6 +53,36 @@ export const addHeadquartersToUser = async (data, vue) => {
         let loading = vue.$loading.show({container:vue.$refs.add_headquarter})
 
         let route = '/api/user/add_headquarter_to_user'
+        
+        let result = await post({route, data})
+    
+        loading.hide()
+        return result
+    } catch (error) {
+        return error
+    }
+}
+
+
+export const getPermissions = async (data, vue) => {
+    try {
+
+        let route = '/api/permission/get_permissions'
+        
+        let result = await post({route, data})
+    
+        return result
+    } catch (error) {
+        return error
+    }
+}
+
+
+export const addPermissionsToUser = async (data, vue) => {
+    try {
+        let loading = vue.$loading.show({container:vue.$refs.add_headquarter})
+
+        let route = '/api/user/add_permissions_to_user'
         
         let result = await post({route, data})
     

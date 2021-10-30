@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use App\Repositories\SecurityRepository;
 use App\Repositories\UserRepository;
 use App\Traits\Headquarter;
+use App\Traits\Permission;
 use App\Traits\Sp;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    use Headquarter;
+    use Headquarter, Permission;
     private $userRepository;
     private $securityRepository;
     public function __construct(){
@@ -57,19 +58,29 @@ class UserController extends Controller
             $user = (Array) $user;
             $headquarters = explode('&&&&&', $user['headquarters_name']);
             $newHeadquarters = [];
+
+
             
             foreach ($headquarters as $key => $headquarter) {
                 $headquarter = explode('|||||', $headquarter);
+
+                // dd($headquarter[2]);
                 $finlRoles = [];
                 // Consultar roles por bodega.
                 $roles = $this->executeReadSp("CALL ksp_get_roles_to_user(:p_user_headquarter_id)",[
                     'p_user_headquarter_id' => $headquarter[2],
                 ]);
+
                 $roles = array_map(function ($role){
                     return (Array) $role;
                 },$roles['data']);
 
-                $newRoles = collect($roles)->groupBy("role_name")->values()->toArray();
+                $filter = collect($roles)->groupBy("type")->values()->toArray();
+                // $roles = collect($filter[0])->groupBy("role_name")->values()->toArray();
+                $especial_permissions =  isset($filter[1]) ? $filter[1] : [];
+
+                
+                $newRoles = collect($filter[0])->groupBy("role_name")->values()->toArray();
                 $r = [];
                 foreach ($newRoles as $key => $newRole) {
                     $permissions = [];
@@ -90,10 +101,13 @@ class UserController extends Controller
                     array_push($finlRoles, $newRole);
                 }
                 // Consultar permisos especiales.
+                
+
                 $headquarter = [
                     'id' => $headquarter[0],
                     'name' => $headquarter[1],
-                    'permissions' => [],
+                    'user_headquarter_id' => (Int) $headquarter[2],
+                    'permissions' => $especial_permissions,
                     'roles' => $finlRoles,
                 ];
                 array_push($newHeadquarters,$headquarter);
@@ -115,10 +129,12 @@ class UserController extends Controller
 
     public function addHeadquarters(Request $request):Array{
         $resp = $this->addHeadquartersToUser($request->user_id, $request->headquarters);
+        return $this->responseApi($resp["status"], ['type' => $resp["status"] ? 'success' : 'error', 'content' => $resp["message"]], $resp);
+    }
 
-        if ($resp["status"]) {
-            return $this->responseApi(true, ['type' => 'success', 'content' => 'Bodega asignada.'], $resp);
-            # code...
-        }
+
+    public function addPermissions(Request $request):Array{
+        $resp = $this->addPermissionsToUser($request->user_headquarter_id, $request->permissions);
+        return $this->responseApi($resp["status"], ['type' => $resp["status"] ? 'success' : 'error', 'content' => $resp["message"]], $resp);
     }
 }
