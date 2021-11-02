@@ -1,6 +1,6 @@
 <template>
     <div>
-        <modal name="add_roles" :width="500"
+        <modal :name="name" :width="500"
          :height="200"
          :adaptive="true"
          class="modal-dialog"
@@ -9,7 +9,7 @@
                 <div class="modal-header" >
                     <p class="modal-title">Agregar roles para  <b>( {{ userdd.fullname }} )</b></p>
                     <div slot="top-right">
-                        <button @click="$modal.hide('add_roles')">
+                        <button @click="$modal.hide(name)">
                             ❌
                         </button>
                     </div>
@@ -62,6 +62,10 @@ export default {
             type: Number,
             required: true,
         },
+        name:{
+            type: String,
+            required: true,
+        }
     },
     data() {
         return {

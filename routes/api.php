@@ -36,6 +36,7 @@ Route::group(['middleware' => [],'prefix' => 'user'], function(){
     Route::post('add_headquarter_to_user', [UserController::class, 'addHeadquarters']);
     Route::post('add_permissions_to_user', [UserController::class, 'addPermissions']);
     Route::post('add_roles_to_user', [UserController::class, 'addRoles']);
+    Route::post('add_new_user', [UserController::class, 'addNewUser']);
 });
 
 

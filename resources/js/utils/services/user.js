@@ -124,6 +124,28 @@ export const addRolesToUser = async (data, vue) => {
 }
 
 
+export const addNewUser = async (data, vue) => {
+    try {
+        let loading = vue.$loading.show({container:vue.$refs.add_headquarter})
+        data = {
+            ...data,
+            password: sha1(data.password),
+            repeat_password: null
+        }
+        let route = '/api/user/add_new_user'
+        
+        let result = await post({route, data})
+    
+        loading.hide()
+        return result
+    } catch (error) {
+        return error
+    }
+}
+
+
+
+
 
 
 

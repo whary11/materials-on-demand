@@ -1,7 +1,7 @@
 <template>
     <div class="card">
         <div class="card-body" ref="tableUsersManage">
-            <button class="btn btn-primary"><i class="cis-user-female-plus"></i> Crear usuario</button>
+            <button class="btn btn-sm btn-primary" @click.prevent="show(modal_user)"><i class="cis-user-female-plus"></i> Crear usuario</button>
             <v-server-table :columns="columns" :options="{requestFunction,headings,childRowTogglerFirst:false}" ref="usersManageTable">
                 <template slot="avatar" slot-scope="{row}">
                     <div>
@@ -16,8 +16,6 @@
                         <span class="rounded-pill badge bg-primary m-1" v-for="(headquarter) in row.headquarters" :key="headquarter.id">
                             {{ headquarter.name }}
                         </span>
-
-                        
                     </div>
                 </template>
 
@@ -41,6 +39,10 @@
         <template v-if="can(['add_headquarters_to_user'])">
             <AddHeadquarter :userdrdr="userEdit" @addHeadquarter="addHeadquarterEvent"/>
         </template>
+
+        <template>
+            <AddNewUser :name="modal_user"/>
+        </template>
     </div>
 </template>
 
@@ -48,11 +50,13 @@
 import { getUsersManage } from '../utils/services/user';
 import AddHeadquarter from '../components/ManageUsers/AddHeadquarter';
 import SubRow from '../components/ManageUsers/SubRow';
+import AddNewUser from '../components/ManageUsers/AddNewUser';
 
 export default {
     components:{
         AddHeadquarter,
-        SubRow
+        SubRow,
+        AddNewUser
     },
     data() {
         return {
@@ -61,7 +65,8 @@ export default {
                 headquarters: "Sedes",
                 options: ''
             },
-            userEdit:{}
+            userEdit:{},
+            modal_user:"modal_user"
         }
     },
     mounted() {
@@ -73,13 +78,17 @@ export default {
         },
         addHeadquarter(user){
             this.userEdit = user
-            this.$modal.show('add_headquarter')
+
+            this.show('add_headquarter')
             console.log("------------addHeadquarter-----------------");
             console.log(user);
             console.log("------------addHeadquarter-----------------");
         },
         addHeadquarterEvent(){
             this.$refs.usersManageTable.refresh()
+        },
+        show(name){
+           this.$modal.show(name) 
         }
     }
 

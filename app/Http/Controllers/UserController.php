@@ -7,6 +7,7 @@ use App\Repositories\UserRepository;
 use App\Traits\Headquarter;
 use App\Traits\Permission;
 use App\Traits\Sp;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -54,6 +55,7 @@ class UserController extends Controller
             'p_limit' => $limit,
         ]);
         $newUsers = [];
+        // dd($users);
         foreach ($users['data'] as $key => $user) {
             $user = (Array) $user;
             $headquarters = explode('&&&&&', $user['headquarters_name']);
@@ -67,39 +69,52 @@ class UserController extends Controller
                 // dd($headquarter[2]);
                 $finlRoles = [];
                 // Consultar roles por bodega.
+                
                 $roles = $this->executeReadSp("CALL ksp_get_roles_to_user(:p_user_headquarter_id)",[
                     'p_user_headquarter_id' => $headquarter[2],
                 ]);
+
+                
+
 
                 $roles = array_map(function ($role){
                     return (Array) $role;
                 },$roles['data']);
 
-                $filter = collect($roles)->groupBy("type")->values()->toArray();
-                // $roles = collect($filter[0])->groupBy("role_name")->values()->toArray();
-                $especial_permissions =  isset($filter[1]) ? $filter[1] : [];
+                
 
                 
-                $newRoles = collect($filter[0])->groupBy("role_name")->values()->toArray();
-                $r = [];
-                foreach ($newRoles as $key => $newRole) {
-                    $permissions = [];
-                    foreach ($newRole as $key => $rr) {
-                        if (isset($rr['permission_id'])) {
-                            array_push($permissions, [
-                                'id' => $rr['permission_id'],
-                                'name' => $rr['permission_name']
-                            ]);
+                if (count($roles) > 0) {
+                    # code...
+                    $filter = collect($roles)->groupBy("type")->values()->toArray();
+                    // if ($key == 2) {
+                    //     dd($filter, $users, $roles);
+                    // }
+                    $especial_permissions =  isset($filter[1]) ? $filter[1] : [];
+                    $newRoles = collect($filter[0])->groupBy("role_name")->values()->toArray();
+                    $r = [];
+                    foreach ($newRoles as $key => $newRole) {
+                        $permissions = [];
+                        foreach ($newRole as $key => $rr) {
+                            if (isset($rr['permission_id'])) {
+                                array_push($permissions, [
+                                    'id' => $rr['permission_id'],
+                                    'name' => $rr['permission_name']
+                                ]);
+                            }
                         }
+    
+                        // dd($newRole);
+                        $newRole = [
+                            'name' => $newRole[0]['role_name'],
+                            'permissions' => $permissions
+                        ];
+                        array_push($finlRoles, $newRole);
                     }
-
-                    // dd($newRole);
-                    $newRole = [
-                        'name' => $newRole[0]['role_name'],
-                        'permissions' => $permissions
-                    ];
-                    array_push($finlRoles, $newRole);
                 }
+                // $roles = collect($filter[0])->groupBy("role_name")->values()->toArray();
+
+                
                 // Consultar permisos especiales.
                 
 
@@ -141,5 +156,30 @@ class UserController extends Controller
     public function addRoles(Request $request):Array{
         $resp = $this->addRolesToUser($request->user_headquarter_id, $request->roles);
         return $this->responseApi($resp["status"], ['type' => $resp["status"] ? 'success' : 'error', 'content' => $resp["message"]], $resp);
+    }
+
+    public function addNewUser(Request $request){
+        // dd($request->all());
+
+        try {
+            $resp = $this->executeSp("CALL ksp_create_new_user(:p_name,:p_last_name,:p_email,:p_password,:p_is_anonymous,:p_now)",[
+                'p_name' => $request->name,
+                'p_last_name' => $request->last_name,
+                'p_email' => $request->email,
+                'p_password' => $request->password,
+                'p_is_anonymous' => $request->is_anonymous,
+                'p_now' => Carbon::now()->toDateTimeString(),
+            ]);
+
+            if ($resp["status"] && isset($resp["data"][0]->msg) ) {
+                $user_id = $resp["data"][0]->msg;
+                $resp = $this->addHeadquartersToUser($user_id, $request->headquarters);
+                return $this->responseApi($resp["status"], ['type' => $resp["status"] ? 'success' : 'error', 'content' => $resp["message"]], $resp);
+            }
+
+            dd($resp);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
     }
 }
