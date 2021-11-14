@@ -17,10 +17,28 @@ trait Headquarter
                     'p_headquarter_id' => $headquarter,
                     'p_now' => Carbon::now()->toDateTimeString()
                 ]);
+
+                // dd($resp);
                 if ($resp["status"]) {
-                    $message = "$headquarter: ".$resp["data"][0]->msg;
+                    if (isset($resp["data"][0]->level)) {
+                        # code...
+                        $message = [
+                            "status" => false,
+                            "message" => "$headquarter: ".$resp["data"][0]->msg
+                        ];
+                    }else{
+                        $message = [
+                            "status" => true,
+                            "message" => "$headquarter: ".$resp["data"][0]->msg
+                        ];
+                    }
                 }else{
-                    $message = "$headquarter: ".$resp["data"];
+
+                    $message = [
+                        "status" => false,
+                        "message" => $message = "$headquarter: ".$resp["data"]
+                    ];
+                    
                 }
                 array_push($messages, $message);
             }
@@ -32,6 +50,10 @@ trait Headquarter
         } catch (\Throwable $th) {
             return [
                 'status' => false,
+                'data' => [[
+                    "status" => false,
+                    "message" => $th->getmessage()
+                ]],
                 'message' => $th->getmessage()
             ];
         }

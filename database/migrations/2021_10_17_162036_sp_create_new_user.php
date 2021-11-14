@@ -12,7 +12,7 @@ class SpCreateNewUser extends Migration
      *
      * @return void
      */
-    public $sp_name = "ksp_add_headquarter_to_user"; 
+    public $sp_name = "ksp_create_new_user"; 
     public function up()
     {
         DB::unprepared("DROP PROCEDURE IF EXISTS  $this->sp_name");

@@ -139,7 +139,7 @@ export default {
         }
     },
     mounted() {
-        console.log(this.user());
+        console.log("ADMIN COMPONENT",this.user());
     },
 }
 </script>

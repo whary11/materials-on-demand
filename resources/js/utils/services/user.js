@@ -59,7 +59,10 @@ export const addHeadquartersToUser = async (data, vue) => {
         loading.hide()
         return result
     } catch (error) {
+        console.log("ERROR: addHeadquartersToUser");
         return error
+
+
     }
 }
 

@@ -76,18 +76,31 @@ export default {
             this.options = resp.data
         },
         async addHeadquarter(){
-            if (this.headquarters.length > 0) {
-                let headquarters = this.headquarters.map(h => h.id);
-                let resp = await addHeadquartersToUser({user_id:this.userdd.id,headquarters}, this);
-                if (resp.transaction.status) {
-                    this.$modal.hide("add_headquarter");
-                    this.$emit("addHeadquarter")
-                    this.notification('show', {
-                        title: `<b class="text-success">Excelente !</b>`,
-                        content: 'Sede agregada con éxito.',
-                        // time: 1000
-                    })
+
+            try {
+                
+                
+                if (this.headquarters.length > 0) {
+                    let headquarters = this.headquarters.map(h => h.id);
+
+                    let resp = await addHeadquartersToUser({user_id:this.userdrdr.id,headquarters}, this);
+                    if (resp.transaction.status) {
+                        this.$modal.hide("add_headquarter");
+                        this.$emit("addHeadquarter")
+                        this.notification('show', {
+                            title: `<b class="text-success">Excelente !</b>`,
+                            content: 'Sede agregada con éxito.',
+                        })
+                    }else{
+                        this.$modal.hide("add_headquarter");
+                        this.notification('show', {
+                            title: `<b class="text-danger">Upps !</b>`,
+                            content: resp.message.content,
+                        })  
+                    }
                 }
+            } catch (error) {
+                console.log(error);
             }
         }
     },

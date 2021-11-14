@@ -2314,21 +2314,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
+                _context2.prev = 0;
+
                 if (!(_this2.headquarters.length > 0)) {
-                  _context2.next = 6;
+                  _context2.next = 7;
                   break;
                 }
 
                 headquarters = _this2.headquarters.map(function (h) {
                   return h.id;
                 });
-                _context2.next = 4;
+                _context2.next = 5;
                 return (0,_utils_services_user__WEBPACK_IMPORTED_MODULE_1__.addHeadquartersToUser)({
-                  user_id: _this2.userdd.id,
+                  user_id: _this2.userdrdr.id,
                   headquarters: headquarters
                 }, _this2);
 
-              case 4:
+              case 5:
                 resp = _context2.sent;
 
                 if (resp.transaction.status) {
@@ -2338,17 +2340,32 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                   _this2.notification('show', {
                     title: "<b class=\"text-success\">Excelente !</b>",
-                    content: 'Sede agregada con éxito.' // time: 1000
+                    content: 'Sede agregada con éxito.'
+                  });
+                } else {
+                  _this2.$modal.hide("add_headquarter");
 
+                  _this2.notification('show', {
+                    title: "<b class=\"text-danger\">Upps !</b>",
+                    content: resp.message.content
                   });
                 }
 
-              case 6:
+              case 7:
+                _context2.next = 12;
+                break;
+
+              case 9:
+                _context2.prev = 9;
+                _context2.t0 = _context2["catch"](0);
+                console.log(_context2.t0);
+
+              case 12:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2);
+        }, _callee2, null, [[0, 9]]);
       }))();
     }
   }
@@ -2465,9 +2482,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       options: []
     };
   },
-  mounted: function mounted() {
-    console.log(this.user_headquarter_id);
-  },
+  mounted: function mounted() {},
   methods: {
     getHeadquarters: function getHeadquarters(search, loading) {
       var _this = this;
@@ -2643,9 +2658,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       options: []
     };
   },
-  mounted: function mounted() {
-    console.log(this.user_headquarter_id);
-  },
+  mounted: function mounted() {},
   methods: {
     getPermissions: function getPermissions(search, loading) {
       var _this = this;
@@ -2827,9 +2840,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       options: []
     };
   },
-  mounted: function mounted() {
-    console.log(this.user_headquarter_id);
-  },
+  mounted: function mounted() {},
   methods: {
     getRoles: function getRoles(search, loading) {
       var _this = this;
@@ -3172,7 +3183,7 @@ __webpack_require__.r(__webpack_exports__);
     return {};
   },
   mounted: function mounted() {
-    console.log(this.user());
+    console.log("ADMIN COMPONENT", this.user());
   }
 });
 
@@ -3400,9 +3411,6 @@ __webpack_require__.r(__webpack_exports__);
     addHeadquarter: function addHeadquarter(user) {
       this.userEdit = user;
       this.show('add_headquarter');
-      console.log("------------addHeadquarter-----------------");
-      console.log(user);
-      console.log("------------addHeadquarter-----------------");
     },
     addHeadquarterEvent: function addHeadquarterEvent() {
       this.$refs.usersManageTable.refresh();
@@ -3666,10 +3674,11 @@ __webpack_require__.r(__webpack_exports__);
 var p = {
   methods: {
     can: function can(permissions) {
-      var result = [];
-      console.log("---------------------INIT CAN MIXIN---------------------------");
-      console.log(permissions);
-      console.log("---------------------FIN CAN MIXIN---------------------------");
+      var description = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
+      var result = []; // console.log("---------------------INIT CAN MIXIN---------------------------");
+      // console.log(permissions, description);
+      // console.log("---------------------FIN CAN MIXIN---------------------------");
+
       permissions.map(function (per) {
         result.push((0,_functions_auth__WEBPACK_IMPORTED_MODULE_0__.can)(per));
       });
@@ -4256,9 +4265,10 @@ var addHeadquartersToUser = /*#__PURE__*/function () {
           case 10:
             _context4.prev = 10;
             _context4.t0 = _context4["catch"](0);
+            console.log("ERROR: addHeadquartersToUser");
             return _context4.abrupt("return", _context4.t0);
 
-          case 13:
+          case 14:
           case "end":
             return _context4.stop();
         }
@@ -45422,6 +45432,7 @@ var render = function() {
         )
       }),
       _vm._v(" "),
+      _vm.can(["add_permissions"], "Agregar permisos.") &&
       _vm.user_headquarter_id
         ? _c(
             "div",
@@ -45439,7 +45450,7 @@ var render = function() {
           )
         : _vm._e(),
       _vm._v(" "),
-      _vm.user_headquarter_id
+      _vm.can(["add_roles"], "Agregar roles.") && _vm.user_headquarter_id
         ? _c(
             "div",
             [
@@ -46358,7 +46369,10 @@ var render = function() {
                         ]
                       ),
                       _vm._v(" "),
-                      _vm.can(["add_headquarters_to_user"])
+                      _vm.can(
+                        ["add_headquarters_to_user"],
+                        "Agregar sedes a un usuario."
+                      )
                         ? _c(
                             "div",
                             {
@@ -46372,22 +46386,20 @@ var render = function() {
                               }
                             },
                             [
-                              _vm.can(["add_headquarters_to_user"])
-                                ? _c(
-                                    "a",
-                                    {
-                                      staticClass: "dropdown-item text-dark",
-                                      attrs: { href: "#" },
-                                      on: {
-                                        click: function($event) {
-                                          $event.preventDefault()
-                                          return _vm.addHeadquarter(row)
-                                        }
-                                      }
-                                    },
-                                    [_vm._v("Agregar sede")]
-                                  )
-                                : _vm._e()
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "dropdown-item text-dark",
+                                  attrs: { href: "#" },
+                                  on: {
+                                    click: function($event) {
+                                      $event.preventDefault()
+                                      return _vm.addHeadquarter(row)
+                                    }
+                                  }
+                                },
+                                [_vm._v("Agregar sede")]
+                              )
                             ]
                           )
                         : _vm._e()
@@ -46416,7 +46428,7 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _vm.can(["add_headquarters_to_user"])
+      _vm.can(["add_headquarters_to_user"], "Agregar sedes a un usuario.")
         ? [
             _c("AddHeadquarter", {
               attrs: { userdrdr: _vm.userEdit },
@@ -46425,7 +46437,9 @@ var render = function() {
           ]
         : _vm._e(),
       _vm._v(" "),
-      [_c("AddNewUser", { attrs: { name: _vm.modal_user } })]
+      _vm.can(["create_new_user_backoffice"], "Crear usuarios backoffice")
+        ? [_c("AddNewUser", { attrs: { name: _vm.modal_user } })]
+        : _vm._e()
     ],
     2
   )

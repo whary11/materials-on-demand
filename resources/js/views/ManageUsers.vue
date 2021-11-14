@@ -26,8 +26,8 @@
                                 <use xlink:href="/dist/vendors/@coreui/icons/svg/free.svg#cil-options"></use>
                             </svg>
                         </button>
-                        <div class="dropdown-menu dropdown-menu-end options-dmenu" style="position:absolute;inset: auto auto 0px 0px; margin: 0px; transform: translate3d(-142px, -28px, 0px);" v-if="can(['add_headquarters_to_user'])">
-                            <a v-if="can(['add_headquarters_to_user'])" class="dropdown-item text-dark" href="#" @click.prevent="addHeadquarter(row)">Agregar sede</a>
+                        <div class="dropdown-menu dropdown-menu-end options-dmenu" style="position:absolute;inset: auto auto 0px 0px; margin: 0px; transform: translate3d(-142px, -28px, 0px);" v-if="can(['add_headquarters_to_user'], 'Agregar sedes a un usuario.')">
+                            <a  class="dropdown-item text-dark" href="#" @click.prevent="addHeadquarter(row)">Agregar sede</a>
                         </div>
                     </div>
                 </template>
@@ -36,11 +36,11 @@
                 </template>
             </v-server-table>
         </div>
-        <template v-if="can(['add_headquarters_to_user'])">
+        <template v-if="can(['add_headquarters_to_user'], 'Agregar sedes a un usuario.')">
             <AddHeadquarter :userdrdr="userEdit" @addHeadquarter="addHeadquarterEvent"/>
         </template>
 
-        <template>
+        <template v-if="can(['create_new_user_backoffice'], 'Crear usuarios backoffice')">
             <AddNewUser :name="modal_user"/>
         </template>
     </div>
@@ -78,11 +78,8 @@ export default {
         },
         addHeadquarter(user){
             this.userEdit = user
-
             this.show('add_headquarter')
-            console.log("------------addHeadquarter-----------------");
-            console.log(user);
-            console.log("------------addHeadquarter-----------------");
+
         },
         addHeadquarterEvent(){
             this.$refs.usersManageTable.refresh()

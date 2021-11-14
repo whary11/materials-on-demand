@@ -24,11 +24,11 @@
                 </span>
             </div>
         </div>
-        <div v-if="user_headquarter_id">
+        <div v-if="can(['add_permissions'], 'Agregar permisos.') && user_headquarter_id">
             <AddPermissions :userdd="row" :user_headquarter_id="user_headquarter_id" @addPermissions="addPermissions" :name="name_modal_permissions"/>
         </div>
 
-        <div v-if="user_headquarter_id">
+        <div v-if="can(['add_roles'], 'Agregar roles.') &&  user_headquarter_id">
             <AddRoles :userdd="row" :user_headquarter_id="user_headquarter_id" @addRoles="addRoles" :name="name_modal_roles"/>
         </div>
     </div>

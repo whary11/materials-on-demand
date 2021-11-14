@@ -74,7 +74,6 @@ export default {
         }
     },
     mounted() {
-        console.log(this.user_headquarter_id)
     },
     methods: {
         async getPermissions(search, loading){

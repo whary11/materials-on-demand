@@ -144,7 +144,11 @@ class UserController extends Controller
 
     public function addHeadquarters(Request $request):Array{
         $resp = $this->addHeadquartersToUser($request->user_id, $request->headquarters);
-        return $this->responseApi($resp["status"], ['type' => $resp["status"] ? 'success' : 'error', 'content' => $resp["message"]], $resp);
+
+        $resp_positive = collect($resp["data"])->where("status", true)->count();
+
+        // dd($resp_positive);
+        return $this->responseApi($resp_positive > 0 ? true : false, ['type' => $resp_positive > 0 ? 'success' : 'error', 'content' => $resp_positive > 0 ? "Sede agregada." : $resp["data"][0]["message"]], $resp);
     }
 
 
@@ -170,6 +174,7 @@ class UserController extends Controller
                 'p_is_anonymous' => $request->is_anonymous,
                 'p_now' => Carbon::now()->toDateTimeString(),
             ]);
+
 
             if ($resp["status"] && isset($resp["data"][0]->msg) ) {
                 $user_id = $resp["data"][0]->msg;
