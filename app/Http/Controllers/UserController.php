@@ -147,7 +147,7 @@ class UserController extends Controller
 
         $resp_positive = collect($resp["data"])->where("status", true)->count();
 
-        // dd($resp_positive);
+        dd($resp_positive)
         return $this->responseApi($resp_positive > 0 ? true : false, ['type' => $resp_positive > 0 ? 'success' : 'error', 'content' => $resp_positive > 0 ? "Sede agregada." : $resp["data"][0]["message"]], $resp);
     }
 
