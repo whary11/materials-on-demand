@@ -147,6 +147,32 @@ export const addNewUser = async (data, vue) => {
 }
 
 
+export const getCustomers = async (data, vue) => {
+    try {
+
+        let route = '/api/user/get_customers'
+        let result = await post({route, data})
+        return result
+    } catch (error) {
+        return error
+    }
+}
+
+export const getAddressesByUser = async (data, vue) => {
+    try {
+
+        let loading = vue.$loading.show({container:vue.$refs.search_address})
+        let route = '/api/user/get_addresses_by_user'
+        let result = await post({route, data})
+        loading.hide()
+
+        return result
+    } catch (error) {
+        return error
+    }
+}
+
+
 
 
 

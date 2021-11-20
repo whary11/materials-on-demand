@@ -9,6 +9,7 @@ use App\Traits\Permission;
 use App\Traits\Sp;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -186,5 +187,21 @@ class UserController extends Controller
         } catch (\Throwable $th) {
             //throw $th;
         }
+    }
+
+    public function getCustomers(Request $request){
+
+        $search = $request->search;
+        $customers = DB::select("SELECT u.id, u.name fullname FROM users u WHERE u.name LIKE '%$search%'");
+
+        return $this->responseApi(true, ['type' => 'success','content' => "Done."], $customers);
+    }
+
+
+    public function getAddressesByUser(Request $request){
+        $customer_id = $request->customer_id;
+        $addresses = DB::select('SELECT CONCAT(a.via_generator," # ",a.value_via_generator,"  ",a.via_number) address FROM addresses a WHERE a.user_id = ?', [$customer_id]);
+
+        return $this->responseApi(true, ['type' => 'success','content' => "Done."], $addresses);;
     }
 }

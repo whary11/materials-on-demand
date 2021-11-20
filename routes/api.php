@@ -37,6 +37,10 @@ Route::group(['middleware' => [],'prefix' => 'user'], function(){
     Route::post('add_permissions_to_user', [UserController::class, 'addPermissions']);
     Route::post('add_roles_to_user', [UserController::class, 'addRoles']);
     Route::post('add_new_user', [UserController::class, 'addNewUser']);
+    Route::post('get_customers', [UserController::class, 'getCustomers']);
+    Route::post('get_addresses_by_user', [UserController::class, 'getAddressesByUser']);
+    
+    
 });
 
 
