@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -28,5 +29,19 @@ Route::group(['middleware' => ['auth_custom'],'prefix' => 'product'], function()
 
 Route::group(['middleware' => [],'prefix' => 'user'], function(){
     Route::post('/get_users_manage', [UserController::class, 'getUsersManage']);
+});
+
+Route::group(['middleware' => [],'prefix' => 'user'], function(){
+    Route::post('get_headquarters_not_user', [UserController::class, 'getHeadquartersNotUser']);
+    Route::post('add_headquarter_to_user', [UserController::class, 'addHeadquarters']);
+    Route::post('add_permissions_to_user', [UserController::class, 'addPermissions']);
+    Route::post('add_roles_to_user', [UserController::class, 'addRoles']);
+    Route::post('add_new_user', [UserController::class, 'addNewUser']);
+});
+
+
+Route::group(['middleware' => [],'prefix' => 'permission'], function(){
+    Route::post('get_permissions', [PermissionController::class, 'getPermissions']);
+    Route::post('get_roles', [PermissionController::class, 'getRoles']);
 });
 

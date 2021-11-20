@@ -35,4 +35,123 @@ export const getUsersManage = async (data, vue) => {
     }
 }
 
+export const getHeadquartersNotUser = async (data, vue) => {
+    try {
+
+        let route = '/api/user/get_headquarters_not_user'
+        
+        let result = await post({route, data})
+    
+        return result
+    } catch (error) {
+        return error
+    }
+}
+
+export const addHeadquartersToUser = async (data, vue) => {
+    try {
+        let loading = vue.$loading.show({container:vue.$refs.add_headquarter})
+
+        let route = '/api/user/add_headquarter_to_user'
+        
+        let result = await post({route, data})
+    
+        loading.hide()
+        return result
+    } catch (error) {
+        console.log("ERROR: addHeadquartersToUser");
+        return error
+
+
+    }
+}
+
+
+export const getPermissions = async (data, vue) => {
+    try {
+
+        let route = '/api/permission/get_permissions'
+        
+        let result = await post({route, data})
+    
+        return result
+    } catch (error) {
+        return error
+    }
+}
+
+
+export const addPermissionsToUser = async (data, vue) => {
+    try {
+        let loading = vue.$loading.show({container:vue.$refs.add_headquarter})
+
+        let route = '/api/user/add_permissions_to_user'
+        
+        let result = await post({route, data})
+    
+        loading.hide()
+        return result
+    } catch (error) {
+        return error
+    }
+}
+
+
+export const getRoles = async (data, vue) => {
+    try {
+
+        let route = '/api/permission/get_roles'
+        
+        let result = await post({route, data})
+    
+        return result
+    } catch (error) {
+        return error
+    }
+}
+
+
+export const addRolesToUser = async (data, vue) => {
+    try {
+        let loading = vue.$loading.show({container:vue.$refs.add_headquarter})
+
+        let route = '/api/user/add_roles_to_user'
+        
+        let result = await post({route, data})
+    
+        loading.hide()
+        return result
+    } catch (error) {
+        return error
+    }
+}
+
+
+export const addNewUser = async (data, vue) => {
+    try {
+        let loading = vue.$loading.show({container:vue.$refs.add_headquarter})
+        data = {
+            ...data,
+            password: sha1(data.password),
+            repeat_password: null
+        }
+        let route = '/api/user/add_new_user'
+        
+        let result = await post({route, data})
+    
+        loading.hide()
+        return result
+    } catch (error) {
+        return error
+    }
+}
+
+
+
+
+
+
+
+
+
 

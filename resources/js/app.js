@@ -8,8 +8,12 @@ import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
 import canMixin from './utils/mixins/can'
 import userMixin from './utils/mixins/user'
+import notificationMixin from './utils/mixins/notification'
 import {ServerTable} from 'vue-tables-2';
 import VModal from 'vue-js-modal/dist/index.nocss.js'
+import vSelect from 'vue-select'
+import 'vue-select/dist/vue-select.css';
+
 import 'vue-js-modal/dist/styles.css'
 
 
@@ -46,6 +50,10 @@ Vue.use(VModal)
 // mixins
 Vue.mixin(canMixin)
 Vue.mixin(userMixin)
+Vue.mixin(notificationMixin)
+
+// Components
+Vue.component('v-select', vSelect)
 
 
 

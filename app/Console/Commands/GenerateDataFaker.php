@@ -252,7 +252,7 @@ class GenerateDataFaker extends Command
 
             $users = User::all(['id'])->pluck('id')->toArray();
             $this->addHeadquartersToUser(1, Headquarter::get()->pluck('id')->toArray());
-            $this->addHeadquartersToUser(2, Headquarter::get()->pluck('id')->toArray());
+            dump($this->addHeadquartersToUser(2, Headquarter::get()->pluck('id')->toArray()));
             $this->newLine(1);
             $this->info("Sedes agregadas a todos los usuarios.");
             // Ponerle roles a un usuario

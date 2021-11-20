@@ -1,7 +1,8 @@
 <template>
     <div class="card">
         <div class="card-body" ref="tableUsersManage">
-            <v-server-table :columns="columns" :options="{requestFunction,headings}" >
+            <button class="btn btn-sm btn-primary" @click.prevent="show(modal_user)"><i class="cis-user-female-plus"></i> Crear usuario</button>
+            <v-server-table :columns="columns" :options="{requestFunction,headings,childRowTogglerFirst:false}" ref="usersManageTable">
                 <template slot="avatar" slot-scope="{row}">
                     <div>
                         <div class="avatar avatar-md shadow">
@@ -15,8 +16,6 @@
                         <span class="rounded-pill badge bg-primary m-1" v-for="(headquarter) in row.headquarters" :key="headquarter.id">
                             {{ headquarter.name }}
                         </span>
-
-                        
                     </div>
                 </template>
 
@@ -27,53 +26,38 @@
                                 <use xlink:href="/dist/vendors/@coreui/icons/svg/free.svg#cil-options"></use>
                             </svg>
                         </button>
-                        <div class="dropdown-menu dropdown-menu-end options-dmenu" style="position:absolute;inset: auto auto 0px 0px; margin: 0px; transform: translate3d(-142px, -28px, 0px);">
-                            <a class="dropdown-item text-dark" href="#" @click.prevent="addHeadquarter(row)">Agregar sede</a>
-                            <!-- <a class="dropdown-item" href="#">Edit</a>
-                            <a class="dropdown-item text-danger" href="#">Delete</a> -->
+                        <div class="dropdown-menu dropdown-menu-end options-dmenu" style="position:absolute;inset: auto auto 0px 0px; margin: 0px; transform: translate3d(-142px, -28px, 0px);" v-if="can(['add_headquarters_to_user'], 'Agregar sedes a un usuario.')">
+                            <a  class="dropdown-item text-dark" href="#" @click.prevent="addHeadquarter(row)">Agregar sede</a>
                         </div>
                     </div>
                 </template>
                 <template v-slot:child_row="{row}">
-                    <div v-for="(item, index) in row.headquarters" :key="index">
-                        <h3>{{ item.name }}</h3>
-                        <h5>Permisos</h5>
-                        <button class="btn btn-dark btn-sm rounded-pill" type="button">Agregar permiso</button>
-                        <span class="rounded-pill badge bg-success m-1" v-for="(permission, key) in item.permissions" :key="key+1*202020200202020">
-                            {{ permission.name }}
-                        </span>
-                        <h5>Roles</h5>
-                        <button class="btn btn-dark btn-sm rounded-pill" type="button">Agregar rol</button>
-
-                        <div v-for="(role, key) in item.roles" :key="key*100">
-                            <span class="rounded-pill badge bg-danger m-1" >
-                                {{ role.name }}
-                            </span>
-
-                            <br>
-                            <span class="rounded-pill badge bg-success m-1" v-for="(permission, key) in role.permissions" :key="key+1*1000">
-                                {{ permission.name }}
-                            </span>
-                        </div>
-                    </div>
+                    <SubRow :row="row" @addPermissions="addHeadquarterEvent" @addRoles="addHeadquarterEvent"/>
                 </template>
             </v-server-table>
-
-
-
-
         </div>
+        <template v-if="can(['add_headquarters_to_user'], 'Agregar sedes a un usuario.')">
+            <AddHeadquarter :userdrdr="userEdit" @addHeadquarter="addHeadquarterEvent"/>
+        </template>
 
-
-        <modal name="add_headquarter">
-            {{ userEdit }}
-        </modal>
+        <template v-if="can(['create_new_user_backoffice'], 'Crear usuarios backoffice')">
+            <AddNewUser :name="modal_user"/>
+        </template>
     </div>
 </template>
 
 <script>
 import { getUsersManage } from '../utils/services/user';
+import AddHeadquarter from '../components/ManageUsers/AddHeadquarter';
+import SubRow from '../components/ManageUsers/SubRow';
+import AddNewUser from '../components/ManageUsers/AddNewUser';
+
 export default {
+    components:{
+        AddHeadquarter,
+        SubRow,
+        AddNewUser
+    },
     data() {
         return {
             columns: ['id','avatar','fullname','email','headquarters','options'],
@@ -81,8 +65,12 @@ export default {
                 headquarters: "Sedes",
                 options: ''
             },
-            userEdit:{}
+            userEdit:{},
+            modal_user:"modal_user"
         }
+    },
+    mounted() {
+       
     },
     methods: {
         requestFunction(data) {
@@ -90,12 +78,16 @@ export default {
         },
         addHeadquarter(user){
             this.userEdit = user
-            this.$modal.show('add_headquarter')
-            console.log("------------addHeadquarter-----------------");
-            console.log(user);
-            console.log("------------addHeadquarter-----------------");
+            this.show('add_headquarter')
+
+        },
+        addHeadquarterEvent(){
+            this.$refs.usersManageTable.refresh()
+        },
+        show(name){
+           this.$modal.show(name) 
         }
-    },
+    }
 
 
 

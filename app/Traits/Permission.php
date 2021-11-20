@@ -45,8 +45,10 @@ trait Permission
                     'p_permission_name' => $permission_name,
                     'p_now' => Carbon::now()->toDateTimeString()
                 ]);
+
+                // dd($resp, (isset($resp["data"][0]->msg) ? $resp["data"][0]->msg : $resp["data"][0]->Message));
                 if ($resp["status"]) {
-                    $message = "$permission_name: ".$resp["data"][0]->msg;
+                    $message = "$permission_name: ".(isset($resp["data"][0]->msg) ? $resp["data"][0]->msg : $resp["data"][0]->Message);
                 }else{
                     $message = "$permission_name: ".$resp["data"];
                 }
