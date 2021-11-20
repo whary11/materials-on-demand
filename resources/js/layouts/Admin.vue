@@ -1,6 +1,6 @@
 <template>
    <div>
-       <div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
+       <div class="sidebar sidebar-dark sidebar-fixed hide" id="sidebar">
         <div class="sidebar-brand d-none d-md-flex">
           <svg class="sidebar-brand-full" width="118" height="46" alt="CoreUI Logo">
             <use xlink:href="/dist/assets/brand/coreui.svg#full"></use>
@@ -30,6 +30,15 @@
               </li>
             </ul>
           </li>
+
+
+          <li class="nav-item">
+            <router-link class="nav-link" tag="a" :to="{ name: 'purchase-products'}">
+                <svg class="nav-icon">
+                    <use xlink:href="/dist/vendors/@coreui/icons/svg/free.svg#cil-speedometer"></use>
+                </svg> Pedido telefonico<span class="badge badge-sm bg-danger ms-auto">beta</span>
+            </router-link>
+        </li>
         </ul>
         <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
       </div>
@@ -118,9 +127,9 @@
           </div> -->
         </header>
         <div class="body flex-grow-1 px-3">
-          <div class="container-lg">
+          <!-- <div class="container-lg"> -->
             <router-view />
-          </div>
+          <!-- </div> -->
         </div>
         <footer class="footer">
           <div><a href="https://coreui.io">CoreUI </a><a href="https://coreui.io">Bootstrap Admin Template</a> © 2021 creativeLabs.</div>
