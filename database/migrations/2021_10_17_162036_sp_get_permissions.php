@@ -20,14 +20,14 @@ class SpGetPermissions extends Migration
         CREATE PROCEDURE '.$this->sp_name .'(p_search TEXT, p_user_id INT, p_type VARCHAR(100))
             COMMENT "Devuelve roles o permisos segun el type que reciba"
         BEGIN
-            IF p_type = "permissions" THEN 
-                SELECT p.id, p.name, p.description FROM permissions p
-                WHERE p.name LIKE CONCAT("%",p_search,"%%") OR p.description LIKE CONCAT("%",p_search,"%%");
-            ELSEIF p_type = "roles" THEN 
-                SELECT r.id, r.name, r.description FROM roles r
-                WHERE r.name LIKE CONCAT("%",p_search,"%%") OR r.description LIKE CONCAT("%",p_search,"%%");
-            END IF;
-        END
+    IF p_type = "permissions" THEN 
+        SELECT p.id, p.name, p.description FROM permissions p
+        WHERE p.name LIKE CONCAT("%",p_search,"%%") OR p.description LIKE CONCAT("%",p_search,"%%");
+    ELSEIF p_type = "roles" THEN 
+        SELECT r.id, r.name, r.description FROM roles r
+        WHERE r.name LIKE CONCAT("%",p_search,"%%") OR r.description LIKE CONCAT("%",p_search,"%%");
+    END IF;
+END
         ');
     }
 

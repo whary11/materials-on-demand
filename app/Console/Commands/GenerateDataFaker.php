@@ -230,7 +230,7 @@ class GenerateDataFaker extends Command
                     'name' => "Luis Fernando",
                     'last_name' => "Raga Renteria",
                     'email' => "luis@gmail.com",
-                    'password' => Hash::make("password"),
+                    'password' => Hash::make(sha1("password")),
                     'is_anonymous' => 0,
                     'created_at' => $created_at,
                     'updated_at' => $created_at
@@ -239,7 +239,7 @@ class GenerateDataFaker extends Command
                     'name' => "David",
                     'last_name' => "Raga Renteria",
                     'email' => "david@gmail.com",
-                    'password' => Hash::make("password"),
+                    'password' => Hash::make(sha1("password")),
                     'is_anonymous' => 0,
                     'created_at' => $created_at,
                     'updated_at' => $created_at

@@ -51,7 +51,7 @@ export default {
     data(){
         return {
             login:{
-                email:'luis.raga@gmail.com',
+                email:'luis@gmail.com',
                 password:'password',
             }
         }
@@ -59,6 +59,14 @@ export default {
     // luis.raga@gmail.com
     // 5f4dcc3b5aa765d61d8327deb882cf99
     // $2y$10$pMX6.NAkbv.dCICe2PyQSeFJ4N/Vf3XF9Fb5UjyLc0nvAK3MdBlpu
+    mounted() {
+      // this.alertCustom({
+      //   icon: 'warning',
+      //   title: 'Oops...',
+      //   text: 'Something went wrong!',
+      // });
+      
+    },
     methods: {
         async loginApi(){
             let loading = this.$loading.show({container:this.$refs.loginContainer})
@@ -68,7 +76,12 @@ export default {
                 this.saveUserData(resp)
                 this.$router.push({ name: "dashboard" })
             }else{
-                alert(resp.message.content)
+
+              this.alertCustom({
+                icon: 'warning',
+                title: 'Oops...',
+                text: resp.message.content,
+              });
             }
 
             loading.hide();

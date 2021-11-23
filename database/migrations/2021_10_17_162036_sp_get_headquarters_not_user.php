@@ -19,20 +19,20 @@ class SpGetHeadquartersNotUser extends Migration
         DB::unprepared('
         CREATE PROCEDURE '.$this->sp_name .'(p_user_id INT, p_search TEXT)
         BEGIN
-            IF p_user_id IS NULL THEN
-                SELECT h.id, h.name FROM headquarters h
-                        JOIN user_headquarters uh ON uh.headquarter_id = h.id
-                        JOIN users u ON u.id = uh.user_id
-                WHERE h.`name` LIKE CONCAT("%",p_search,"%") GROUP BY h.id;
-            ELSE
-                SELECT h.id, h.name FROM headquarters h
-                        JOIN user_headquarters uh ON uh.headquarter_id = h.id
-                        JOIN users u ON u.id = uh.user_id
-                WHERE uh.headquarter_id NOT IN (SELECT h.id FROM headquarters h
-                        JOIN user_headquarters uh ON uh.headquarter_id = h.id
-                WHERE uh.user_id = p_user_id) AND h.`name` LIKE CONCAT("%",p_search,"%") GROUP BY h.id;
-            END IF;		 
-        END
+    IF p_user_id IS NULL THEN
+        SELECT h.id, h.name FROM headquarters h
+            JOIN user_headquarters uh ON uh.headquarter_id = h.id
+            JOIN users u ON u.id = uh.user_id
+        WHERE h.`name` LIKE CONCAT("%",p_search,"%") GROUP BY h.id;
+    ELSE
+        SELECT h.id, h.name FROM headquarters h
+            JOIN user_headquarters uh ON uh.headquarter_id = h.id
+            JOIN users u ON u.id = uh.user_id
+        WHERE uh.headquarter_id NOT IN (SELECT h.id FROM headquarters h
+            JOIN user_headquarters uh ON uh.headquarter_id = h.id
+        WHERE uh.user_id = p_user_id) AND h.`name` LIKE CONCAT("%",p_search,"%") GROUP BY h.id;
+    END IF;		 
+END
         ');
     }
 

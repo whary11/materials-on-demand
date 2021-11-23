@@ -25,10 +25,17 @@ class UserController extends Controller
             $password = $request->password;
             // Consultar el usuario por su email
             $user = $this->userRepository->getUserByEmail($email);
+
+
             $verify = $this->userRepository->passwordVerify($password,$user['password']);
             if ($verify) {
                 // Crear token
                 $token = $this->securityRepository->createToken($user);
+
+                if (!isset($token)) {
+                    return $this->responseApi(false, ['type' => 'error', 'content' => 'No se pudo generar el token.']);
+                }
+
                 unset($user["password"]);
                 return $this->responseApi(true, ['type' => 'success', 'content' => 'Credenciales correctas'], [
                     'token' => $token,

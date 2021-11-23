@@ -17,26 +17,26 @@ class SpCreateToken extends Migration
         DB::unprepared('
         CREATE PROCEDURE '.$this->sp_name .'(p_uuid text, p_token_expires varchar(100), p_token_refresh_exp varchar(100), p_user_id int)
         BEGIN
-            DECLARE EXIT HANDLER FOR SQLEXCEPTION
-        
-            BEGIN
-                SHOW ERRORS;
-                ROLLBACK;   
-            END;
-            
-            DECLARE EXIT HANDLER FOR SQLWARNING
-            BEGIN
-                SHOW ERRORS;  
-                ROLLBACK;   
-            END;
-            
-            
-            START TRANSACTION;
-                INSERT INTO `oauth_access_tokens` VALUES (null, p_uuid,p_user_id,0,now(),now(),p_token_expires);
-                INSERT INTO `oauth_refresh_tokens` VALUES (null, last_insert_id(),0, p_token_refresh_exp, now(), now());
-            COMMIT;
-            CALL ksp_response(true,"Usuario registrado correctamente");  
-    END
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+
+    BEGIN
+        SHOW ERRORS;
+        ROLLBACK;   
+    END;
+    
+    DECLARE EXIT HANDLER FOR SQLWARNING
+    BEGIN
+        SHOW ERRORS;  
+        ROLLBACK;   
+    END;
+    
+    
+    START TRANSACTION;
+        INSERT INTO `oauth_access_tokens` (id, uuid, user_id, revoked, created_at, updated_at, expires_at) VALUES (null, p_uuid,p_user_id,0,now(),now(),p_token_expires);
+        INSERT INTO `oauth_refresh_tokens` (id,token_id,revoked,expires_at,created_at,updated_at) VALUES (null, last_insert_id(),0, p_token_refresh_exp, now(), now());
+    COMMIT;
+    CALL ksp_response(true,"Usuario registrado correctamente");  
+END
         ');
     }
 

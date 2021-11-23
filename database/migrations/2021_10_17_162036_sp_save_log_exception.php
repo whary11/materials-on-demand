@@ -19,30 +19,30 @@ class SpSaveLogException extends Migration
         DB::unprepared('
         CREATE PROCEDURE '.$this->sp_name .'(p_user_id INT, p_code INT, p_file TEXT,p_line INT,p_message TEXT,p_now DATETIME)
         BEGIN
-            INSERT INTO `keny`.`log_exceptions`
-                (
-                    `user_id`,
-                    `code`,
-                    `file`,
-                    `line`,
-                    `message`,
-                    `origin`,
-                    `created_at`,
-                    `updated_at`
-                )
-            VALUES
-                (
-                    p_user_id,
-                    p_code,
-                    p_file,
-                    p_line,
-                    p_message,
-                    "BACKOFFICE"
-                    p_now,
-                    p_now
-                );
-            CALL ksp_response(TRUE, "Excepcion creada.");
-        END
+    INSERT INTO `log_exceptions`
+        (
+            `user_id`,
+            `code`,
+            `file`,
+            `line`,
+            `message`,
+            `origin`,
+            `created_at`,
+            `updated_at`
+        )
+    VALUES
+        (
+            p_user_id,
+            p_code,
+            p_file,
+            p_line,
+            p_message,
+            "BACKOFFICE",
+            p_now,
+            p_now
+        );
+    CALL ksp_response(TRUE, "Excepcion creada.");
+END
         ');
     }
 

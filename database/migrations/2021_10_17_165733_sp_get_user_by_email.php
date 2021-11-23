@@ -17,8 +17,8 @@ class SpGetUserByEmail extends Migration
         DB::unprepared('
         CREATE PROCEDURE '.$this->sp_name .'(p_email varchar(255))
         BEGIN
-        SELECT id,name,last_name,email,password FROM users Where email = p_email;
-    END
+    SELECT id,name,last_name,email,password FROM users Where email = p_email;
+END
         ');
     }
 
