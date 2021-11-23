@@ -19,6 +19,9 @@ import Notification from './components/Globals/Notification'
 export default {
     components:{
         Notification
-    }
+    },
+    mounted() {
+        window.$routerVueGlobal = this
+    },
 }
 </script>
