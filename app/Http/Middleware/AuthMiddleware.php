@@ -36,6 +36,7 @@ class AuthMiddleware extends Middleware
             return $this->responseApi(false, ['type' => 'unauthorized', 'content' => 'Unauthorized 3']);
         }
 
+
         $token_string = $token[1];
         $token = $token_string;
         

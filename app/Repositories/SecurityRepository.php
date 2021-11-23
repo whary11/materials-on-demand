@@ -8,12 +8,14 @@ use Carbon\Carbon;
 use DateTimeImmutable;
 use DateTimeInterface;
 use Exception;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redis;
 use Laika\Infrastructure\Clients\UserClient;
 use Lcobucci\Clock\SystemClock;
 use Lcobucci\JWT\Signer\Key\InMemory;
 use Lcobucci\JWT\Configuration;
 use Lcobucci\JWT\Signer\Rsa\Sha256;
+use Lcobucci\JWT\Token;
 use Lcobucci\JWT\UnencryptedToken;
 use Lcobucci\JWT\Validation\Constraint\SignedWith;
 use Lcobucci\JWT\Validation\RequiredConstraintsViolated;
@@ -41,7 +43,7 @@ class SecurityRepository implements SecurityRepositoryContract {
         $now_time = new DateTimeImmutable("now");
         $issued_at = $now_time;
         $token_uuid = sha1(Carbon::now()->toDateTimeString().rand(1, 100000));
-        $token_expiried_at = $now_time->modify("+50 year");
+        $token_expiried_at = $now_time->modify("8 days");
         $t_identified_by = $this->saveToken($user['id'],$token_uuid,$token_expiried_at);
         if(is_null($t_identified_by)){
             return null;
@@ -108,13 +110,17 @@ class SecurityRepository implements SecurityRepositoryContract {
         $result = (Array) $this->executeSp('CALL ksp_create_token(:token_uuid,:token_expiried_at,:token_refresh_expiried_at,:user_id)', [
             'token_uuid' => $token_uuid,
             'token_expiried_at' => $token_expiried_at->format('Y-m-d H:i:s'),
-            'token_refresh_expiried_at' => null,
+            'token_refresh_expiried_at' => $token_expiried_at->modify("8 days")->format('Y-m-d H:i:s'),
             'user_id' => $user_id,
         ]);
+
+        
 
         if(!$result["status"]){
             return null;
         }else if(!isset($result["data"][0])){
+            return null;
+        }else if(isset($result["data"][0]) && isset($result["data"][0]->Level)){
             return null;
         }
 
@@ -142,8 +148,24 @@ class SecurityRepository implements SecurityRepositoryContract {
             );
 
             $constraints = $this->config->validationConstraints();
+            $token_uuid = $token->claims()->get("jti");
+            $user_id = $token->claims()->get("uid");
             try {
                 $this->config->validator()->assert($token, ...$constraints);
+
+                // Buscar el token en base de datos
+                $validate = $this->validateTokenSql($token);
+                
+
+                // dd($t[0]->count);
+
+                if(!$validate){
+                    return [
+                        'status' => false,
+                        'message' => "El token no existe en base de datos.",
+                    ];
+                }
+
             } catch (RequiredConstraintsViolated $e) {
                 //dump($e);
                 return [
@@ -159,8 +181,7 @@ class SecurityRepository implements SecurityRepositoryContract {
             ];
         }
 
-        $token_uuid = $token->claims()->get("jti");
-        $user_id = $token->claims()->get("uid");
+        
 
         return [
             'status' => true,
@@ -211,24 +232,21 @@ class SecurityRepository implements SecurityRepositoryContract {
     /**
      *
      */
-    public function removeTokenSql(string $token_uuid):void{
+    public function removeTokenSql(Token $token):void{
         $this->executeSp('CALL lsp_remove_token(:p_token_uuid)',['p_token_uuid'=>$token_uuid]);
     }
 
     /**
      *
      */
-    public function validateTokenSql(string $token_uuid,int $client_id):Array{
-        $result = (Array) $this->executeSp('CALL lsp_verify_token_ddd(:token_uuid,:client_id)', [
-            'token_uuid' => $token_uuid,
-            'client_id' => $client_id
-        ]);
-
-        if($result["status"]){
-            return isset($result["data"][0])?(array) $result["data"][0]:[];
+    public function validateTokenSql(Token $token):Bool{
+        $token_uuid = $token->claims()->get("jti");
+        $user_id = $token->claims()->get("uid");
+        $t = DB::select('SELECT COUNT(id) count FROM oauth_access_tokens WHERE uuid = ? AND user_id = ?', [$token_uuid, $user_id]);
+        if ($t[0]->count == 0) {
+            return false;
         }
-        //dump("El token no existe en base de datos");
-        return [];
+        return true;
     }
 
     /**

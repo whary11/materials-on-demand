@@ -47,22 +47,20 @@ let baseUrl = `${window.location.origin}`;
             let responseJson = await response.json();
 
             if (response.ok) {
+                // Si la API nos retorna un no autorizado, debemos redireccionar al login
                 if (responseJson.code === 401) {
                     localStorage.removeItem('token')
                     localStorage.removeItem('roles')
                     localStorage.removeItem('user')
                     localStorage.removeItem('permissions')
-                    window.$routerVueGlobal.push({name:'login'})
+                    console.log(window.$routerVueGlobal);
+                    window.$routerVueGlobal.$router.push({name:'login'})
                     return responseJson
                 }
-                
                 return responseJson;
-
             } else {
                 let responseJson = response.json();
-
                 return responseJson;
-
             }
         } catch (error) {
 

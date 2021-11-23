@@ -24,13 +24,20 @@ export const getUsersManage = async (data, vue) => {
         let route = '/api/user/get_users_manage'
         
         let result = await post({route, data})
+
+        console.log("get_users_manage",result);
+
+        // return {}
         result.data = {
             data: result.data,
             count: result.count
         }
+
+    
         loading.hide()
         return result
     } catch (error) {
+        console.log("Error: ",error);
         return error
     }
 }
