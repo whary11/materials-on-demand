@@ -4,7 +4,7 @@
             <SearchCustomer @selectedCustomer="selectedCustomer"/>
         </div>
         <div class="col-md-4">
-            <SearchAddresses :customer="customer"/>
+            <SearchAddresses :customer="customer" @selectedAddress="selectedAddress"/>
         </div>
     </div>
 </template>
@@ -27,6 +27,10 @@ export default {
     methods: {
         selectedCustomer(customer){
             this.customer = customer
+        },
+        selectedAddress(address){
+            console.log(address);
+            if(this.customer){this.customer.address = address}
         }
     }
 }

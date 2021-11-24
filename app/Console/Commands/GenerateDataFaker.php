@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Address;
 use App\Models\City;
 use App\Models\Configuration;
 use App\Models\Country;
@@ -252,7 +253,7 @@ class GenerateDataFaker extends Command
 
             $users = User::all(['id'])->pluck('id')->toArray();
             $this->addHeadquartersToUser(1, Headquarter::get()->pluck('id')->toArray());
-            dump($this->addHeadquartersToUser(2, Headquarter::get()->pluck('id')->toArray()));
+            // dump($this->addHeadquartersToUser(2, Headquarter::get()->pluck('id')->toArray()));
             $this->newLine(1);
             $this->info("Sedes agregadas a todos los usuarios.");
             // Ponerle roles a un usuario
@@ -262,6 +263,36 @@ class GenerateDataFaker extends Command
             $this->addRolesToUser(4, [1,2]);
             $this->newLine(1);
             $this->info("Roles asignados.");
+
+            // Agregarle direcciones a un usuario
+            for ($i=1; $i < 5; $i++) { 
+                Address::create([
+                    "user_id" => 1,
+                    "status_id" => 1,
+                    "via_generator" => "Carrera",
+                    "value_via_generator" => "105 A",
+                    "via_number" => "70B 07",
+                    "house" => "PISO 2",
+                    "lat" => "4.7039437",
+                    "long" => "-74.1235508",
+                    "complement" => "Casa familiar piso 2 ($i)"
+                ]);
+            }
+
+            for ($i=1; $i < 5; $i++) { 
+                Address::create([
+                    "user_id" => 2,
+                    "status_id" => 1,
+                    "via_generator" => "Carrera",
+                    "value_via_generator" => "105 A",
+                    "via_number" => "70B 07",
+                    "house" => "PISO 2",
+                    "lat" => "4.7039437",
+                    "long" => "-74.1235508",
+                    "complement" => "Casa familiar piso 2 ($i)"
+                ]);
+            }
+            
             // Ponerle permisos especiales a un usuario ?
     
 

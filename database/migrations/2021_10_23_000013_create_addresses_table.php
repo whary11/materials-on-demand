@@ -26,8 +26,8 @@ class CreateAddressesTable extends Migration
             $table->string('value_via_generator', 15)->default('0');
             $table->string('via_number', 15)->nullable()->default(null);
             $table->string('house', 15)->nullable()->default(null);
-            $table->double('lat');
-            $table->integer('long')->default('0');
+            $table->string('lat', 100);
+            $table->string('long', 100);
             $table->string('complement')->nullable()->default('0');
             $table->timestamps();
 

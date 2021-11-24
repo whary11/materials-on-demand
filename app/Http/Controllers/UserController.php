@@ -207,7 +207,7 @@ class UserController extends Controller
 
     public function getAddressesByUser(Request $request){
         $customer_id = $request->customer_id;
-        $addresses = DB::select('SELECT CONCAT(a.via_generator," # ",a.value_via_generator,"  ",a.via_number) address FROM addresses a WHERE a.user_id = ?', [$customer_id]);
+        $addresses = DB::select('SELECT CONCAT(a.via_generator," # ",a.value_via_generator,"  ",a.via_number) address, id, lat, `long`, complement FROM addresses a WHERE a.user_id = ?', [$customer_id]);
 
         return $this->responseApi(true, ['type' => 'success','content' => "Done."], $addresses);;
     }

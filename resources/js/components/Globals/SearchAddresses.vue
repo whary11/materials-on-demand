@@ -1,20 +1,30 @@
 <template>
     <div class="form-group" ref="search_address">
         <slot name="label">
-            <label for="search-address">Seleccionar dirección</label>
+            <label for="search-address">  Seleccionar dirección</label>
         </slot>
         {{ observerFetch }}
         <v-select :options="addresses" label="address" v-model="address" inputId="search-address" @input="selectedAddress" placeholder="Seleccionar dirección" >
-            <!-- <template slot="option" slot-scope="option">
+            <template slot="option" slot-scope="option">
                 <span style="font-size:12px">
-                    {{ option.fullname }}
+                    {{ option.address }}
+                    <b> {{ option.lat }} - {{ option.long }}</b>
+                    <br>
+                    <!-- <i class="fas fa-street-view"></i> -->
+                    <span>{{ option.complement }}</span>
+                    <br>
+                    <b><font-awesome-icon :icon="['fas', 'map-marked-alt']" /> {{ option.lat }} - {{ option.long }}</b>
                 </span>
             </template>
             <template slot="selected-option" slot-scope="option">
                 <span style="font-size:12px">
-                    {{ option.fullname }}
+                    {{ option.address }}
+                    <br>
+                    <span>{{ option.complement }}</span>
+                    <br>
+                    <b><font-awesome-icon :icon="['fas', 'street-view']" /> {{ option.lat }} - {{ option.long }}</b>
                 </span>
-            </template> -->
+            </template>
         </v-select>
     </div>
 </template>
@@ -43,7 +53,7 @@ export default {
             this.addresses = resp.data
         },
         selectedAddress(val){
-            return val && this.$emit("selectedAddress", val)
+            return this.$emit("selectedAddress", val)
         }
     },
 
